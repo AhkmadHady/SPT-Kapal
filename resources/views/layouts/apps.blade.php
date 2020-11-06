@@ -91,7 +91,6 @@
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                     Dasborad 
-                     
                 </p>
                 </a>
             </li>
@@ -166,12 +165,7 @@
                         <p>Kartu Perencanaan</p>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a href="{{route('generate_pemeliharaan')}}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Generate Perencanaan</p>
-                    </a>
-                </li>  --}}
+                
                 <li class="nav-item">
                     <a href="{{route('indeks_komponen')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
