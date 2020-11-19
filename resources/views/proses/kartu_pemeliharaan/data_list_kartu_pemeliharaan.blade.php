@@ -68,9 +68,7 @@
                             <a class="dropdown-item delete_pemeliharaan ukuran_font" data-set="delete_pemeliharaan" data-id="{{$datas->id}}" href="#"> <i class="fa fa-cut mr-1"></i> Delete</a>
 
                             <a class="dropdown-item ukuran_font" target="_blank" href="{{route('print_kartu_pemeliharaan',$datas->id)}}"><i class="fa fa-print mr-1"></i> Cetak</a>
-
-                            
-
+ 
                             @if ($count_data < 1)
                                 <a class="dropdown-item ukuran_font generate_skedul" href="#" data-set="generate_skedul" data-kode="{{$datas->kode_pemeliharaan}}" data-tgl="{{$datas->tgl_mulai}}"><i class="fa fa-retweet mr-1"></i> Generate</a>
                             @endif
@@ -87,33 +85,33 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="ukuran_font">Uraian Pemeliharaan :</label>
-                                    <p style="font-size: 10px;">   @php
+                                     @php
                                         echo $datas->uraian_pemeliharaan;
-                                    @endphp</p>
+                                    @endphp
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group"> 
                                     <label class="ukuran_font">Tindakan Pengamanan :</label>
-                                    <p style="font-size: 10px;">   @php
+                                    @php
                                         echo $datas->tindakan_pengamanan;
-                                    @endphp</p>
+                                    @endphp
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group"> 
                                     <label class="ukuran_font">Prosedur :</label>
-                                    <p style="font-size: 10px;">   @php
+                                    @php
                                        echo $datas->prosedur;
-                                    @endphp</p>
+                                    @endphp
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group"> 
                                     <label class="ukuran_font">Alat Kerja :</label>
-                                    <p style="font-size: 10px;">   @php
+                                    @php
                                        echo $datas->alat_kerja;
-                                     @endphp</p>
+                                    @endphp
                                 </div>
                             </div>
                         </div> 
