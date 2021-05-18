@@ -9,7 +9,7 @@
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Kelompok</th> 
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sistem</th> 
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Sistem</th>
-            <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Pelaksana</th> 
+            <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Pelaksana</th>
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">JO</th>
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Periode</th> 
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Lokasi</th>
@@ -58,7 +58,6 @@
                 <td> 
                     <div class="btn-group">
                         <button type="button" class="btn btn-secondary btn-sm">Pilih</button> 
-
                         <div class="btn-group">
                           <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                           </button>
@@ -74,7 +73,7 @@
                             @endif
                           </div>
                         </div>
-                      </div> 
+                    </div> 
                 </td> 
             </tr>
             <tr class="hide-table-padding">

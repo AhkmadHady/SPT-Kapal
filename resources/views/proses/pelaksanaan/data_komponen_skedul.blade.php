@@ -6,11 +6,12 @@
         <span aria-hidden="true">&times;</span>
     </button>
     <div class="d-flex align-items-center">
-        <i class="bx bx-like"></i>
         <span>
-          {{ session('info') }}
-        </span>
+          {{ session('info') }} &nbsp;&nbsp;&nbsp; <a href="{{route('kerusakan')}}"><i class="fa fa-plus"></i> Tambah Kerusakan</a>
+        </span>  
+        
     </div>
+   
 </div>
 @endif
 

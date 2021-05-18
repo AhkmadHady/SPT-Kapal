@@ -20,7 +20,16 @@
                 <h5> Kalender Skedul Pemeliharaan </h5> 
             </div> 
             <div class="card-body pad"> 
-                <div class="pencarian">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
+                    </li> 
+                </ul>
+
+                <div class="pencarian mt-3">
                     <form method="POST" action="{{route('get_jadwal_skedul')}}">
                         @csrf
                     

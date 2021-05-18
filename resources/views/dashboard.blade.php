@@ -7,28 +7,28 @@
             <div class="row">
                 <div class="col-md-8">
                     <h3> &nbsp; {{$komponen}}</h3> 
-                    <p>&nbsp; Komponen</p>
+                    <p>&nbsp; Kerusakan</p>
                 </div>
                 <div class="col-md-4">
                     <img src="{{asset('assets/gambar/electric-motor.png')}}" width="100%"> 
                 </div>
             </div>
-        <a href="{{route('kartu_pemeliharaan')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{route('kerusakan')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div> 
 
     <div class="col-lg-3 col-6"> 
-        <div class="small-box bg-success">
+        <div class="small-box bg-danger">
             <div class="row">
                 <div class="col-md-8">
-                    <h3> &nbsp; {{$sistem}}</h3> 
-                    <p>&nbsp; Sistem</p>
+                    <h3> &nbsp; {{$autstanding}}</h3> 
+                    <p>&nbsp; Outstanding Skedul</p>
                 </div>
                 <div class="col-md-4">
                     <img src="{{asset('assets/gambar/plan.png')}}" width="100%"> 
                 </div>
             </div>
-        <a href="{{route('sistem')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{route('skedul')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div> 
 
@@ -48,7 +48,7 @@
     </div> 
 
     <div class="col-lg-3 col-6"> 
-        <div class="small-box bg-danger">
+        <div class="small-box bg-success">
             <div class="row">
                 <div class="col-md-8">
                     <h3> &nbsp; {{$pelaksanaan}}</h3> 

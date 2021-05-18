@@ -52,11 +52,11 @@ class KomponenLokasiControllers extends Controller
             return redirect()->back()->withErrors($validasi->errors());
         }else{
 
-				$input              = new KomponenLokasi();
-				$input->nama_lokasi = $request->nama_lokasi; 
-				$input->keterangan  = $request->keterangan; 
-                $input->save();
-                return redirect()->back()->with('info','Data lokasi komponen berhasil disimpan');
+            $input              = new KomponenLokasi();
+            $input->nama_lokasi = $request->nama_lokasi; 
+            $input->keterangan  = $request->keterangan; 
+            $input->save();
+            return redirect()->back()->with('info','Data lokasi komponen berhasil disimpan');
         }
     }
 
@@ -92,9 +92,7 @@ class KomponenLokasiControllers extends Controller
     /*** Delete Lokasi ***/
     public function deleteLokasi(Request $request)
     {
-            KomponenLokasi::where('id','=',"{$request->id_hapus}")->delete();
+        KomponenLokasi::where('id','=',"{$request->id_hapus}")->delete();
         return redirect()->back()->with('info','Data lokasi komponen berhasil dihapus');
     }
-
-
 }

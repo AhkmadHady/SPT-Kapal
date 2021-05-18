@@ -68,19 +68,20 @@
   </nav> 
   
   <aside class="main-sidebar sidebar-dark-primary elevation-4 ukuran_font"> 
-  <a href="{{route('home')}}" class="brand-link">
+    <a href="{{route('home')}}" class="brand-link">
       <img src="{{asset('assets/gambar/logo_tni_al.png')}}" alt="Logo TNI AL" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light"> <strong> SPT KAPAL </strong></span>
+           style="opacity: 0.8">
+      <span class="brand-text font-weight-light"> <strong> SPT KAPAL</strong>
     </a> 
-
+     
     <div class="sidebar"> 
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-            <img src="{{asset('assets/gambar/user.png')}}" class="img-circle elevation-2" alt="User Image">
+        <div class="user-panel mt-3 d-flex">
+            <div class="image mt-2">
+                <img src="{{asset('assets/gambar/user.png')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-            <a href="#" class="d-block">{{ Auth::user()->name }} </a>
+                <a href="#" class="d-block">{{ Auth::user()->name }} </a>
+                <a href="#">{{ AUTH::user()->kapal}}</a>
             </div>
         </div> 
 
@@ -147,6 +148,12 @@
                             <p>Periode</p>
                         </a>
                     </li> 
+                    <li class="nav-item">
+                        <a href="{{route('jenis_perawatan')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Jenis Perawatan</p>
+                        </a>
+                    </li> 
                     </ul>
                 </li>
             @endif 
@@ -159,64 +166,85 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{route('kartu_pemeliharaan')}}" class="nav-link">
+                    <li class="nav-item">
+                        <a href="{{route('kartu_pemeliharaan')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Kartu Perencanaan</p>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="{{route('indeks_komponen')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Indeks Komponen</p>
+                        </a>
+                    </li> 
+                    <li class="nav-item">
+                        <a href="{{route('skedul')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Kartu Perencanaan</p>
-                    </a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="{{route('indeks_komponen')}}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Indeks Komponen</p>
-                    </a>
-                </li> 
+                        <p>
+                            Daftar Skedul
+                        </p>
+                        </a>
+                    </li>
                 </ul>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{route('skedul')}}" class="nav-link">
-                <i class="nav-icon fa fa-clipboard-list"></i>
-                <p>
-                    Daftar Skedul
-                </p>
-                </a>
-            </li>
+            </li> 
 
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                    Pelaksanaan KP
-                    <i class="fas fa-angle-left right"></i>
-                </p>
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                        Pemeliharaan 
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
                 </a>
                 <ul class="nav nav-treeview">
                     
                     <li class="nav-item">
                         <a href="{{route('kalender_skedul')}}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Kalender Pemeliharaan</p>
+                            <i class="far fa-circle nav-icon"></i>
+                            <p> Terencana</p>
+                        </a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a href="{{route('jam_putar')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Tidak Terencana</p>
+                        </a>
+                    </li> 
+                </ul>
+            </li>
+ 
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-list"></i>
+                    <p>
+                        Laporan
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    
+                    <li class="nav-item">
+                        <a href="{{route('laporan_pelaksanaan')}}" class="nav-link">
+                         <i class="far fa-circle nav-icon"></i>
+                        <p>
+                            Laporan Pemeliharaan
+                        </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                    <a href="{{route('pelaksanaan')}}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Daftas Pelaksanaan</p>
+                        <a href="{{route('kerusakan')}}" class="nav-link">
+                         <i class="far fa-circle nav-icon"></i>
+                        <p>
+                            Laporan Kerusakan
+                        </p>
                         </a>
                     </li> 
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="{{route('laporan_pelaksanaan')}}" class="nav-link">
-                <i class="nav-icon fa fa-list"></i>
-                <p>
-                    Laporan Pemeliharaan
-                </p>
-                </a>
-            </li>
         </ul>
       </nav> 
     </div> 
@@ -258,7 +286,7 @@
 <script src="{{asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script> 
 <script src="{{asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script> 
 <script src="{{asset('assets/dist/js/adminlte.js')}}"></script> 
-<script src="{{asset('assets/dist/js/pages/dashboard.js')}}"></script> 
+<script src="http://spt.mycaputra.com/assets/dist/js/pages/dashboard.js"></script> 
 <script src="{{asset('assets/dist/js/demo.js')}}"></script>
 <script src="{{asset('assets/plugins/select2/js/select2.full.min.js')}}"></script>
 <script src="{{asset('assets/plugins/toastr/toastr.min.js')}}"></script>
@@ -268,6 +296,10 @@
         $('.select2').select2()
 
         $('#reservationdate').datetimepicker({
+            format: 'Y-MM-DD'
+        });
+
+        $('#reservationdate2').datetimepicker({
             format: 'Y-MM-DD'
         });
 

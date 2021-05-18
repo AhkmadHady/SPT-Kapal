@@ -18,18 +18,19 @@
         <div class="card card-outline card-info">
             <div class="card-header">
                 <h5> Daftar Skedul Pemeliharaan </h5> 
-            </div> 
-
-            
+            </div>  
             <div class="card-body pad">
                 <div id="accordion"> 
                     <div class="card">
                         <div class="card-header" id="headingOne">
-                            <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <i class="fa fa-search"></i>
-                                Pencarian
-                            </button>
-                            </h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="mb-0"> 
+                                        Pencarian 
+                                    </h5>
+                                </div>
+                                 
+                            </div> 
                         </div>
                     
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
@@ -72,25 +73,28 @@
                                         <div class="form-group">
                                             <label class="ukuran_font"> Tanggal Skedul </label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input ukuran_font" data-target="#reservationdate" id="tanggal" name="tanggal" datetimepicker="Y-m-d"/>
+                                                <input type="text" class="form-control datetimepicker-input ukuran_font" data-target="#reservationdate" id="tanggal1" name="tanggal1" datetimepicker="Y-m-d"/>
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div> 
                                         </div>
                                     </div>
-            
+
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="ukuran_font"> Tahun Skedul </label>
-                                            <div class="input-group" data-target-input="nearest">
-                                                <input type="text" class="form-control ukuran_font" id="tahun" name="tahun" datetimepicker="Y-m-d"/>
-                                                <div class="input-group-append" data-toggle="datetimepicker">
-                                                    <div class="input-group-text" onclick="pencarianTahunSkedul()"> <i class="fa fa-search"></i> &nbsp; Cari </div>
+                                            <label class="ukuran_font"> s/d Tanggal Skedul </label>
+                                            <div class="input-group date" id="tanggal2" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input ukuran_font" data-target="#tanggal2" id="tgl2" name="tgl2" datetimepicker="Y-m-d"/>
+                                                <div class="input-group-append" data-target="#tanggal2" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div> 
                                         </div>
-                                    </div>
+                                    </div> 
+                                    <div class="col-md-4" style="margin-top: 34px">
+                                        <button type="button" style="width:150px" onclick="pencarianTanggalSkedul()" class="btn btn-block bg-gradient-primary btn-sm"><i class="fa fa-search"></i>  Cari </button>
+                                    </div> 
                                 </div> 
                             </div>
                         </div>
@@ -313,19 +317,20 @@
        }
     });
 
-    /*** Pencarian Tahun ***/
-    function pencarianTahunSkedul(){
+    /*** Pencarian Tanggal ***/
+    function pencarianTanggalSkedul(){
         $.ajax({
             headers:{
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 
             type     : "POST",
-            url      : "{{route('pencarian_tahun_skedul')}}",
+            url      : "{{route('pencarian_tanggal_skedul')}}",
             cache    : false,
             datetype : "JSON", 
             data:{
-                    'tahun': $('#tahun').val()
+                    'tanggal1': $('#tanggal1').val(),
+                    'tanggal2': $('#tgl2').val()
                 }, 
                 beforeSend: function(){
                     $("#loading_header").css('display','block'); 
@@ -338,32 +343,6 @@
                 }
         });
     } 
-
-    /*** Pencarian Skedul BY Tanggal ***/ 
-    $("#tanggal").blur(function(){ 
-        $.ajax({
-            headers:{
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                
-            type     : "POST",
-            url      : "{{route('pencarian_tanggal_skedul')}}",
-            cache    : false,
-            datetype : "JSON", 
-            data:{
-                    'tanggal': $('#tanggal').val()
-                }, 
-                beforeSend: function(){
-                    $("#loading_header").css('display','block'); 
-                    $('#tabel_kelompok').html(''); 
-                },
-                success: function(data){ 
-                    $("#loading_header").css('display','none'); 
-                    $('#tabel_kelompok').html(''); 
-                    $('#tabel_kelompok').html(data);
-                }
-        });
-    });  
 
     /*** Pencarian Skedul BY Komponen ***/
     $("#komponen").keyup(function(){ 
@@ -438,6 +417,8 @@
                 }
         });
     });  
+
+   
 
 </script>
 @endpush

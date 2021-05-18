@@ -17,7 +17,7 @@
     <div class="col-md-12 mt-4">
         <div class="card card-outline card-info">
             <div class="card-header">
-                <h5> Daftar Lokasi </h5> 
+                <h5> Kerusakan </h5> 
             </div> 
             <div class="card-body pad">
                 <div class="pencarian_data">
@@ -25,11 +25,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="ukuran_font">Pencarian</label>
-                                <input type="text" name="pencarian" id="pencarian" class="form-control ukuran_font" placeholder="Lokasi ...">
+                                <input type="text" name="pencarian" id="pencarian" class="form-control ukuran_font" placeholder="komponen ...">
                             </div>
                         </div>
-                        <div class="col-md-6" style="margin-top: 16px;">
-                            <a class="btn btn-block bg-gradient-info btn-sm float-right mt-4" style="width: 150px;" href="{{route('create_lokasi')}}"><i class="fa fa-plus"></i> Tambah Lokasi</a>
+                        <div class="col-md-6" style="margin-top: 16px">
+                            <a class="btn btn-block bg-gradient-info btn-sm float-right mt-4" style="width: 180px;" href="{{route('add_kerusakan')}}"><i class="fa fa-plus"></i> Tambah Kerusakan</a>
                         </div>
                     </div> 
                 </div>
@@ -41,30 +41,35 @@
                         <thead>
                             <tr> 
                                 <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">No</th>  
-                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">Nama Lokasi</th>  
-                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">Keterangan</th>  
-                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; width:90px; font-size: 14px">Aksi</th>   
+                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">Tgl Kerusakan</th> 
+                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px" >Komponen</th> 
+                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">Pelaksana</th>  
+                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">Detail Kerusakan</th>  
+                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; width:90px; font-size: 14px">Aksi</th>  
+                    
                             </tr>
                         </thead>
-                        <tbody> 
+                        <tbody>
+                    
                             @php
                                 $no = 1;
                             @endphp
                     
-                            @if ($lokasi->count())
-                                @foreach ($lokasi as $datas)
+                            @if ($kerusakan->count())
+                                @foreach ($kerusakan as $datas)
                                     <tr>
                                         <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">{{$no}} </td>  
-                                        <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">{{$datas->nama_lokasi}}</td>    
-                                        <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">{{$datas->keterangan}}</td>  
-                                        <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px; width: 100px">
+                                        <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">{{$datas->tgl_kerusakan}}</td>  
+                                        <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">{{$datas->komponen}}</td>  
+                                        <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">{{$datas->nama_pelaksana}}</td>  
+                                        <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">{{$datas->detail_kerusakan}}</td>  
+                                        <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">
                                             <div class="row">
                                                 <div class="col-sm">
-                                                    <a class="btn btn-block bg-gradient-secondary btn-sm" title="Edit" href="{{route('edit_lokasi',$datas->id)}}"><i class="fa fa-edit"></i> </a>
-
+                                                <a class="btn btn-block bg-gradient-secondary btn-sm" href="{{route('edit_kerusakan',$datas->id)}}" title="Edit"><i class="fa fa-edit"></i></a>
                                                 </div>
                                                 <div class="col-sm">
-                                                    <a class="btn btn-block bg-gradient-danger btn-sm delete_lokasi" title="Hapus" href="#" data-set="delete_lokasi" data-id="{{$datas->id}}"><i class="fa fa-cut"></i> </a>
+                                                <a class="btn btn-block bg-gradient-danger btn-sm delete_kerusakan" href="#" data-set="delete_kerusakan" title="Delete" data-id="{{$datas->id}}"><i class="fa fa-cut"></i></a> 
                                                 </div>
                                             </div> 
                                         </td>  
@@ -75,9 +80,7 @@
                                 @endforeach
                             @else 
                                     <tr>
-                                        <td colspan="5" align="center">
-                                            <span class="text-danger">Data lokasi tidak ditemukan</span>
-                                        </td>
+                                        <td colspan="6" align="center"><span class="text-danger">Data kerusakan tidak ditemukan</span></td>
                                     </tr>
                             @endif 
                         </tbody>
@@ -101,12 +104,12 @@
                     <i class="bx bx-x"></i>
                 </button>
             </div>
-            <form action="{{route('delete_lokasi')}}" method="POST">
+            <form action="{{route('delete_kerusakan')}}" method="POST">
                 @csrf
                 <div class="modal-body">
-                    Apakah anda ingin menghapus data lokasi komponen ?
+                    Apakah anda ingin menghapus data kerusakan ?
                     <input type="hidden" id="id_hapus" name="id_hapus">
-                 </div>
+                </div>
                 <div class="modal-footer">
 
                     <button type="button" class="btn btn-light-secondary btn-sm" data-dismiss="modal">
@@ -117,6 +120,7 @@
                         <i class="bx bx-check d-block d-sm-none"></i>
                         <span class="d-sm-block d-none"><i class="bx bx-trash"></i> Hapus </span>
                     </button>
+
                 </div>
             </form>
         </div>
@@ -125,25 +129,23 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-    $('.delete_lokasi').on('click', function(){
+    $('.delete_kerusakan').on('click', function(){
        $set = $(this).attr('data-set');
-       if ($set == 'delete_lokasi'){
-
+       if ($set == 'delete_kerusakan'){ 
              id  = $(this).attr('data-id');
              $('#id_hapus').val(id);  
              $('#hapus_data').modal('show');
-         
        }
    });
 
-    $("#pencarian").keyup(function(){ 
+   $("#pencarian").keyup(function(){ 
         $.ajax({
             headers:{
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 
             type     : "POST",
-            url      : "{{route('pencarian_lokasi_master')}}",
+            url      : "{{route('pencarian_kerusakan')}}",
             cache    : false,
             datetype : "JSON", 
             data:{
