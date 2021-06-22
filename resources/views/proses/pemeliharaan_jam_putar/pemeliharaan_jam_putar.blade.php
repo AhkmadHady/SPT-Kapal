@@ -96,7 +96,7 @@
                                         <td>{{$datas->nama_pelaksana}}</td>   
                                         <td>
                                              @if ($datas->rumus < 1)
-                                             <span>Jumlah Putaran : {{$datas->jml_putaran}} </span>
+                                             <span>Periode Pemeliharaan : {{$datas->jml_putaran}} </span>
                                              <br> 
                                              @endif
                                             

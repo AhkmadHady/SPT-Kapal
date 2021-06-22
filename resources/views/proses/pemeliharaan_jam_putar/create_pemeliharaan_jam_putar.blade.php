@@ -53,7 +53,7 @@
                         <span class="text-danger">{{$errors->first('id_pelaksana')}}</span>
                     </div> 
                     <div class="form-group mb-50" style="display: none" id="frm_jam_putar">
-                        <label for="username" style="font-size: 15px;" class="ukuran_font">Jumlah Putaran</label>
+                        <label for="username" style="font-size: 15px;" class="ukuran_font">Periode Pemeliharaan</label>
                         <input type="text" style="" class="form-control ukuran_font" id="jml_putaran" name="jml_putaran">
                         <span class="text-danger">{{$errors->first('jml_putaran')}}</span>
                     </div> 
