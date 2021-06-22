@@ -138,12 +138,25 @@
                         </div>
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="ukuran_font">Komponen <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" value="{{$pemeliharaan->komponen}}" id="komponen" name="komponen">
+                            <input type="text" class="form-control" value="{{$pemeliharaan->komponen}}" id="komponen" name="komponen">
                             <span class="text-danger">{{$errors->first('komponen')}}</span>
 
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="ukuran_font">Jenis Perawatan <span class="text-danger">*</span></label>
+                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_jenis_perawatan" id="id_jenis_perawatan">
+                                <option value="{{$pemeliharaan->id_jenis_perawatan}}">{{$pemeliharaan->jenis_perawatan}}</option>
+                                @foreach ($perawatan as $datas)
+                                    <option value="{{$datas->id}}">{{$datas->jenis_perawatan}}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger">{{$errors->first('id_jenis_perawatan')}}</span>
                         </div>
                     </div>
 

@@ -55,26 +55,12 @@ class SkedulControllers extends Controller
                     ->leftjoin('skedul as sk','sk.kode_pemeliharaan','=','kp.kode_pemeliharaan')
                     ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                     ->select ('tgl_skedul','kp.kode_pemeliharaan','kp.komponen','lok.nama_lokasi','sk.id','sk.status')
-                    ->where('sk.tgl_skedul','=',"{$request->tanggal}")
+                    ->where('sk.tgl_skedul','>=',"{$request->tanggal1}")
+                    ->where('sk.tgl_skedul','<=',"{$request->tanggal2}")
                     ->get();
         
         return view('proses.skedul.data_list_skedul',compact('skedul','paginate'));
-    } 
-
-    /*** Pencarian Skedul BY Tahun ***/
-    public function pencarianTahunSkedul(Request $request)
-    {
-        $paginate = 1;
-        $skedul   = DB::table('kartu_pemeliharaan as kp')
-                    ->leftjoin('skedul as sk','sk.kode_pemeliharaan','=','kp.kode_pemeliharaan')
-                    ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
-                    ->select ('tgl_skedul','kp.kode_pemeliharaan','kp.komponen','lok.nama_lokasi','sk.id','sk.status')
-                    ->whereYear('sk.tgl_skedul','=',"{$request->tahun}")
-                    ->get();
-        
-        return view('proses.skedul.data_list_skedul',compact('skedul','paginate'));
-    } 
-
+    }   
 
     /*** Pencarian Skedul BY Komponen ***/
     public function pencarianKomponenSkedul(Request $request)
@@ -285,7 +271,7 @@ class SkedulControllers extends Controller
 
                 if (isset($data_status_skedul)) {
 
-                    return redirect()->back()->with('info','Data pelaksanaan pemeliharaan berhasi disimpan, skedul pemeliharaan komponen gagal di generate, silahkan cek status komponen'); 
+                    return redirect()->back()->with('info','Data pelaksanaan pemeliharaan berhasi disimpan, skedul pemeliharaan komponen gagal di generate.'); 
                     
                 }else{
 
@@ -369,7 +355,7 @@ class SkedulControllers extends Controller
 
                     }else{
 
-                        return redirect()->back()->with('gagal','Data pelaksanaan pemeliharaan berhasi disimpan,skedul pemeliharaan komponen gagal di generate, data skedul masih ada berstatus aktif'); 
+                        return redirect()->back()->with('gagal','Data pelaksanaan pemeliharaan berhasi disimpan,skedul pemeliharaan komponen gagal di generate. '); 
                     }
 
                 }

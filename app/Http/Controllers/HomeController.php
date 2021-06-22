@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
-use App\Models\Master\KomponenSistem; 
+use App\Models\Master\KomponenSistem;
+use App\Models\Proses\Kerusakan;
 use App\Models\Proses\Skedul;
 use App\Models\Proses\Pemeliharaan; 
 use App\Models\Proses\PelaksanaanPemeliharaan; 
@@ -17,9 +18,12 @@ class HomeController extends Controller
     public function index()
     {
         $tahun          = date('Y');
-        $komponen       = Pemeliharaan::GroupBy('komponen')->count();
-        $sistem         = KomponenSistem::GroupBy('nama_komponen_sistem')->count();
-        $skedul2         = Skedul::whereYear('tgl_skedul','=',"{$tahun}")->count();
+        $tanggal        = date('Y-m-d');
+        $komponen       = Kerusakan::select('komponen')->count();
+
+        $autstanding    = Skedul::whereYear('tgl_skedul','=',"{$tahun}")->where('tgl_skedul','<',"{$tanggal}")->where('status','=',0)->count();
+
+        $skedul2        = Skedul::whereYear('tgl_skedul','=',"{$tahun}")->where('status','=',0)->count();
         $pelaksanaan    = PelaksanaanPemeliharaan::whereYear('tgl_pelaksanaan','=',"{$tahun}")->count();
 
         $bulan_ = date('m');
@@ -29,7 +33,6 @@ class HomeController extends Controller
                           ->whereMonth('tgl_skedul','=',"{$bulan_}")
                           ->get();
 
-        return view('dashboard',compact('komponen','sistem','skedul','pelaksanaan','skedul2','bulan_','tahun_'));
+        return view('dashboard',compact('komponen','autstanding','skedul','pelaksanaan','skedul2','bulan_','tahun_'));
     } 
-   
 }

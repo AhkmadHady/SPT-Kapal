@@ -280,33 +280,33 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="ukuran_font">Uraian Pemeliharaan :</label>
-                                                        <p style="font-size: 12px;">   @php
+                                                        @php
                                                             echo $datas->uraian_pemeliharaan;
-                                                        @endphp</p>
+                                                        @endphp
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group"> 
                                                         <label class="ukuran_font">Tindakan Pengamanan :</label>
-                                                        <p style="font-size: 12px;">   @php
+                                                        @php
                                                             echo $datas->tindakan_pengamanan;
-                                                        @endphp</p>
+                                                        @endphp
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group"> 
                                                         <label class="ukuran_font">Prosedur :</label>
-                                                        <p style="font-size: 12px;">   @php
+                                                        @php
                                                            echo $datas->prosedur;
-                                                        @endphp</p>
+                                                        @endphp
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group"> 
                                                         <label class="ukuran_font">Alat Kerja :</label>
-                                                        <p style="font-size: 12px;">   @php
+                                                        @php
                                                            echo $datas->alat_kerja;
-                                                         @endphp</p>
+                                                         @endphp
                                                     </div>
                                                 </div>
                                             </div> 

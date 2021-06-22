@@ -9,7 +9,7 @@
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Kelompok</th> 
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sistem</th> 
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Sistem</th>
-            <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Pelaksana</th> 
+            <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Pelaksana</th>
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">JO</th>
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Periode</th> 
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Lokasi</th>
@@ -58,7 +58,6 @@
                 <td> 
                     <div class="btn-group">
                         <button type="button" class="btn btn-secondary btn-sm">Pilih</button> 
-
                         <div class="btn-group">
                           <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                           </button>
@@ -68,15 +67,13 @@
                             <a class="dropdown-item delete_pemeliharaan ukuran_font" data-set="delete_pemeliharaan" data-id="{{$datas->id}}" href="#"> <i class="fa fa-cut mr-1"></i> Delete</a>
 
                             <a class="dropdown-item ukuran_font" target="_blank" href="{{route('print_kartu_pemeliharaan',$datas->id)}}"><i class="fa fa-print mr-1"></i> Cetak</a>
-
-                            
-
+ 
                             @if ($count_data < 1)
                                 <a class="dropdown-item ukuran_font generate_skedul" href="#" data-set="generate_skedul" data-kode="{{$datas->kode_pemeliharaan}}" data-tgl="{{$datas->tgl_mulai}}"><i class="fa fa-retweet mr-1"></i> Generate</a>
                             @endif
                           </div>
                         </div>
-                      </div> 
+                    </div> 
                 </td> 
             </tr>
             <tr class="hide-table-padding">
@@ -87,33 +84,33 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="ukuran_font">Uraian Pemeliharaan :</label>
-                                    <p style="font-size: 10px;">   @php
+                                     @php
                                         echo $datas->uraian_pemeliharaan;
-                                    @endphp</p>
+                                    @endphp
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group"> 
                                     <label class="ukuran_font">Tindakan Pengamanan :</label>
-                                    <p style="font-size: 10px;">   @php
+                                    @php
                                         echo $datas->tindakan_pengamanan;
-                                    @endphp</p>
+                                    @endphp
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group"> 
                                     <label class="ukuran_font">Prosedur :</label>
-                                    <p style="font-size: 10px;">   @php
+                                    @php
                                        echo $datas->prosedur;
-                                    @endphp</p>
+                                    @endphp
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group"> 
                                     <label class="ukuran_font">Alat Kerja :</label>
-                                    <p style="font-size: 10px;">   @php
+                                    @php
                                        echo $datas->alat_kerja;
-                                     @endphp</p>
+                                    @endphp
                                 </div>
                             </div>
                         </div> 

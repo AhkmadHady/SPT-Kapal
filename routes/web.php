@@ -92,6 +92,17 @@ Route::group(['namespace' => 'Master'], function(){
  	Route::post('pengguna/delete-pengguna','UserControllers@deletePengguna')->name('delete_pengguna');
  	Route::get('pengguna/{id}/edit-pengguna','UserControllers@editPengguna')->name('edit_pengguna');
  	Route::post('pengguna/{id}/update-pengguna','UserControllers@updatePengguna')->name('update_pengguna');
+
+	/*** Jenis Perawatan ***/
+	Route::get('jenis-perawatan','JenisPerawatanControllers@index')->name('jenis_perawatan');
+	Route::post('jenis-perawatan/pencarian-perawatan','JenisPerawatanControllers@PencarianJenisPerawatan')->name('pencariaan_jenis_perawatan');
+	Route::get('jenis-perawatan/create-jenis-perawatan','JenisPerawatanControllers@createJenisPerawatan')->name('create_jenis_perawatan');
+	Route::post('jenis-perawatan/save-jenis-perawatan','JenisPerawatanControllers@saveJenisPerawatan')->name('save_jenis_perawatan');
+	Route::post('jenis-perawatan/delete-jenis-perawatan','JenisPerawatanControllers@deleteJenisPerawatan')->name('delete_jenis_perawatan');
+
+	Route::post('jenis-perawatan/{id}/update-jenis-perawatan','JenisPerawatanControllers@updateJenisPerawatan')->name('update_jenis_perawatan');
+
+	Route::get('jenis-perawatan/{id}/edit-jenis-perawatan','JenisPerawatanControllers@editJenisPerawatan')->name('edit_jenis_perawatan');
 });
 
 Route::group(['namespace' => 'Proses'], function(){
@@ -119,9 +130,10 @@ Route::group(['namespace' => 'Proses'], function(){
 	/*** Skedul ***/
 	Route::get('skedul','SkedulControllers@index')->name('skedul');
 	Route::post('skedul/pencarian-tanggal-skedul','SkedulControllers@pencarianTanggalSkedul')->name('pencarian_tanggal_skedul');
+	 
 	Route::post('skedul/pencarian-komponen-skedul','SkedulControllers@pencarianKomponenSkedul')->name('pencarian_kom_skedul');
 	Route::post('skedul/pencarian-lokasi-skedul','SkedulControllers@pencarianLokasiSkedul')->name('pencarian_lok_skedul');
-	Route::post('skedul/pencarian-tahun-skedul','SkedulControllers@pencarianTahunSkedul')->name('pencarian_tahun_skedul');
+	 
 	Route::post('skedul/delete-skedul','SkedulControllers@deleteSkedul')->name('delete_skedul');
 	Route::post('skedul/update-skedul','SkedulControllers@updatetanggalSkedul')->name('update_skedul');
 
@@ -147,8 +159,29 @@ Route::group(['namespace' => 'Proses'], function(){
 
 	/*** Laporan Pemeliharaan ***/ 
 	Route::get('laporan-pemeliharaan','PelaksanaanControllers@laporanPelaksanaan')->name('laporan_pelaksanaan');
-	Route::get('laporan-pemeliharaan/{tgl1}/{tgl2}/export-excel','PelaksanaanControllers@exportExcel');
-	Route::get('laporan-pemeliharaan/{tgl1}/{tgl2}/export-pdf','PelaksanaanControllers@exportPdf');
+	Route::get('laporan-pemeliharaan/{tgl1}/{tgl2}/{kategori}/export-excel','PelaksanaanControllers@exportExcel');
+	Route::get('laporan-pemeliharaan/{tgl1}/{tgl2}/{kategori}/export-pdf','PelaksanaanControllers@exportPdf');
 	Route::post('laporan-pemeliharaan/pencarian-pemeliharaan','PelaksanaanControllers@pencarianLaporanPemeliharaan')->name('cari_laporan_pelaksanaan');
 
+	/*** Kerusakan ***/
+	Route::get('kerusakan','KerusakanControllers@indexKerusakan')->name('kerusakan');
+	Route::get('kerusakan/add-kerusakan','KerusakanControllers@createKerusakan')->name('add_kerusakan');
+	Route::post('kerusakan/save-kerusakan','KerusakanControllers@saveKerusakan')->name('save_kerusakan');
+	Route::post('kerusakan/delete-kerusakan','KerusakanControllers@deleteKerusakan')->name('delete_kerusakan');
+	Route::post('kerusakan/pencarian-kerusakan','KerusakanControllers@pencarianKomponen')->name('pencarian_kerusakan');
+	Route::get('kerusakan/{id}/edit-kerusakan','KerusakanControllers@editKerusakan')->name('edit_kerusakan');
+	Route::post('kerusakan/{id}/update-kerusakan','KerusakanControllers@updateKerusakan')->name('update_kerusakan');
+
+	/*** Pemeliharaan Jam Putar ***/
+	Route::get('pemeliharaan-jam-putar','PemeliharaanJamPutarControllers@pemaliharaanJamPutar')->name('jam_putar');
+	Route::get('pemeliharaan-jam-putar/create-pemeliharaan-jam-putar','PemeliharaanJamPutarControllers@createPemeliharaanJamPutar')->name('create_jam_putar');
+	Route::get('pemeliharaan-jam-putar/{id}/edit-pemeliharaan-jam-putar','PemeliharaanJamPutarControllers@editKerusakan')->name('edit_jam_putar');
+	Route::post('pemeliharaan-jam-putar/{id}/update-pemeliharaan-jam-putar','PemeliharaanJamPutarControllers@updatePemeliharaanJamPutar')->name('update_jam_putar');
+	Route::post('pemeliharaan-jam-putar/pencarian-komponen-pemeliharaan-jam-putar','PemeliharaanJamPutarControllers@pencarianKomponenPemeliharaanJamputar')->name('pencarian_komponen_pemeliharaan_putaran');
+	Route::post('pemeliharaan-jam-putar/pencarian-periode-pemeliharaan-jam-putar','PemeliharaanJamPutarControllers@pencarianKomponenPemeliharaanJamputar')->name('pencarian_periode_pemeliharaan_putaran');
+	Route::post('pemeliharaan-jam-putar/save-pemeliharaan-jam-putar','PemeliharaanJamPutarControllers@savePemeliharaanJamPutar')->name('save_pemeliharaan_jam_putar');
+	Route::post('pemeliharaan-jam-putar/delete-pemeliharaan-jam-putar','PemeliharaanJamPutarControllers@deletePemeliharaanJamPutar')->name('delete_pemeliharaan_jam_putar');
+
+	Route::post('pemeliharaan-jam-putar/get-hari-periode','PemeliharaanJamPutarControllers@cekPeriodeKomponen')->name('get_jumlah_hari_periode');
+	Route::post('pemeliharaan-jam-putar/{id}/get-hari-periode','PemeliharaanJamPutarControllers@cekPeriodeKomponen')->name('get_jumlah_hari_periode_edit');
 });	

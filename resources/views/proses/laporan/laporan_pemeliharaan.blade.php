@@ -44,7 +44,7 @@
             <div class="card-body pad">
                 <div class="pencarian_data"> 
                     <div class="row"> 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label class="ukuran_font"> Tanggal </label>
                                 <div class="input-group date" id="tanggal" data-target-input="nearest">
@@ -53,10 +53,11 @@
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div> 
+                                <span class="text-danger" id="tgl1_er"></span>
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label class="ukuran_font"> s/d Tanggal </label>
                                 <div class="input-group date" id="tanggal2" data-target-input="nearest">
@@ -65,30 +66,43 @@
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div> 
+                                <span class="text-danger" id="tgl2_er"></span>
                             </div>
                         </div>
 
-                        <div class="col-md-2" style="margin-top: 32px;">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <button class="btn btn-block bg-gradient-info btn-sm" onclick="cariPemeliharaan()"> <i class="fa fa-search"></i> Cari </button>
+                                <label class="ukuran_font"> Kategori Jenis Perawatan </label>
+                                 <select name="kategori" id="kategori" class="form-control">
+                                     <option value="ALL">ALL</option>
+                                     <option value="TERENCANA">TERENCANA</option>
+                                     <option value="TIDAK TERENCANA">TIDAK TERENCANA</option>
+                                 </select>
+                                 <span class="text-danger" id="kategori_er"></span>
                             </div>
                         </div>
 
-                        <div class="col-md-2" style="margin-top: 32px;">
-                            <div class="btn-group"> 
-                                <button type="button" class="btn btn-block bg-gradient-secondary btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown" style="width: 150px;"> 
-                                    Export Data &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <div class="dropdown-menu" role="menu">
-                                        <form method="GET" id="export_excel">
-                                            <a class="dropdown-item ukuran_font" onclick="exportExcelLaporan()" href="#">Excel</a>
-                                        </form>
-
-                                        <form method="GET" id="export_pdf">
-                                            <a class="dropdown-item ukuran_font" onclick="exportPdf()" href="#">PDF</a> 
-                                        </form>
-                                    </div>
+                        <div class="col-md-3" style="margin-top: 35px;">
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <button type="button" class="btn btn-info btn-sm" onclick="cariPemeliharaan()">
+                                    Cari
                                 </button>
-                            </div>
+                                
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-block bg-gradient-info btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown" style="width: 125px;"> 
+                                    Export Data
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <form method="GET" id="export_excel">
+                                        <a class="dropdown-item ukuran_font" onclick="exportExcelLaporan()" href="#">Excel</a>
+                                    </form>
+
+                                    <form method="GET" id="export_pdf">
+                                        <a class="dropdown-item ukuran_font" onclick="exportPdf()" href="#">PDF</a> 
+                                    </form>
+                                  </div>
+                                </div>
+                            </div> 
                         </div>
                     </div> 
                 </div>
@@ -102,14 +116,15 @@
                             <tr>
                                 <th class="ukuran_font">No</th>  
                                 <th class="ukuran_font">Kode Pemeliharaan</th>
-                                <th class="ukuran_font">Tanggal Skedul</th>
-                                <th class="ukuran_font">Tanggal Pelaksanaan</th> 
-                                <th class="ukuran_font">Nama Komponen</th>
+                                <th class="ukuran_font"> Skedul</th>
+                                <th class="ukuran_font"> Pelaksanaan</th> 
+                                <th class="ukuran_font"> Komponen</th>
                                 <th class="ukuran_font">Pelaksana</th>  
                                 <th class="ukuran_font">Lokasi</th>
                                 <th class="ukuran_font">JO</th>
                                 <th class="ukuran_font">Periode</th>
-                                <th class="ukuran_font">Catatan Pelaksanaan</th> 
+                                <th class="ukuran_font">Jenis&nbsp;Perawatan</th>
+                                <th class="ukuran_font">Catatan</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -126,6 +141,7 @@
                                     <td class="ukuran_font">{{$datas->nama_lokasi}}</td>
                                     <td class="ukuran_font">{{$datas->jo}}</td> 
                                     <td class="ukuran_font">{{$datas->periode}}</td> 
+                                    <td class="ukuran_font">{{$datas->jenis_perawatan}}</td> 
                                     <td class="ukuran_font">{{$datas->catatan}}</td> 
                                 </tr>
                     
@@ -202,7 +218,8 @@
             datetype : "JSON", 
             data:{
                     'tanggal1': $('#tgl_pertama').val(),
-                    'tanggal2': $('#tgl_kedua').val()
+                    'tanggal2': $('#tgl_kedua').val(),
+                    'kategori': $('#kategori').val(),
                 }, 
                 beforeSend: function(){
                     $("#loading_header").css('display','block'); 
@@ -220,24 +237,33 @@
         {
             var tgl11 = $('#tgl_pertama').val();
             var tgl12 = $('#tgl_kedua').val();
-
+            var kategori = $('#kategori').val();
             if (tgl11 == '') {
-                $('#error_tgl1').html('Tanggal pertama tidak boleh kosong.');
+                $('#tgl1_er').html('Tanggal tidak boleh kosong.');
                 return false;
             }else{
-                $('#error_tgl1').html('');
+                $('#tgl1_er').html('');
 
             }
 
             if (tgl12 == '') {
-                $('#error_tgl2').html('Tanggal pertama tidak boleh kosong.');
+                $('#tgl2_er').html('Tanggal tidak boleh kosong.');
                 return false;
             }else{
-                $('#error_tgl2').html('');
+                $('#tgl2_er').html('');
 
             }
            
-            $('#export_excel').attr('action', 'laporan-pemeliharaan/'+tgl11+'/'+tgl12+'/export-excel');
+
+            if (kategori == '') {
+                $('#kategori_er').html('Kategori tidak boleh kosong.');
+                return false;
+            }else{
+                $('#kategori_er').html('');
+
+            }
+           
+            $('#export_excel').attr('action', 'laporan-pemeliharaan/'+tgl11+'/'+tgl12+'/'+kategori+'/export-excel');
             $('#export_excel').submit();
         }
 
@@ -245,9 +271,10 @@
         {
             var tgl11 = $('#tgl_pertama').val();
             var tgl12 = $('#tgl_kedua').val();
+            var kategori = $('#kategori').val();
 
             if (tgl11 == '') {
-                $('#error_tgl1').html('Tanggal pertama tidak boleh kosong.');
+                $('#error_tgl1').html('Tanggal tidak boleh kosong.');
                 return false;
             }else{
                 $('#error_tgl1').html('');
@@ -255,13 +282,20 @@
             }
 
             if (tgl12 == '') {
-                $('#error_tgl2').html('Tanggal pertama tidak boleh kosong.');
+                $('#error_tgl2').html('Tanggal tidak boleh kosong.');
                 return false;
             }else{
                 $('#error_tgl2').html('');
-
             }
-            $('#export_pdf').attr('action', 'laporan-pemeliharaan/'+tgl11+'/'+tgl12+'/export-pdf');
+
+            if (kategori == '') {
+                $('#kategori_er').html('kategori tidak boleh kosong.');
+                return false;
+            }else{
+                $('#kategori_er').html('');
+            }
+
+            $('#export_pdf').attr('action', 'laporan-pemeliharaan/'+tgl11+'/'+tgl12+'/'+kategori+'/export-pdf');
             $('#export_pdf').submit();
         }
 

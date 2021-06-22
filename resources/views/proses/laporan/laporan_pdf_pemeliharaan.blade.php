@@ -41,14 +41,15 @@
                 <tr>
                     <th class="ukuran_font">No</th>  
                     <th class="ukuran_font">Kode Pemeliharaan</th>
-                    <th class="ukuran_font">Tgl Skedul</th>
-                    <th class="ukuran_font">Tgl Pelaksanaan</th> 
-                    <th class="ukuran_font">Nama Komponen</th>
+                    <th class="ukuran_font">Skedul</th>
+                    <th class="ukuran_font">Pelaksanaan</th> 
+                    <th class="ukuran_font">Komponen</th>
                     <th class="ukuran_font">Pelaksana</th>  
                     <th class="ukuran_font">Lokasi</th>
                     <th class="ukuran_font">JO</th>
                     <th class="ukuran_font">Periode</th>
-                    <th class="ukuran_font">Catatan Pelaksanaan</th> 
+                    <th class="ukuran_font">Jenis&nbsp;Perawatan</th>
+                    <th class="ukuran_font">Catatan</th> 
                 </tr>
             </thead>
             <tbody>
@@ -65,6 +66,7 @@
                         <td class="ukuran_font">{{$datas->nama_lokasi}}</td>
                         <td class="ukuran_font">{{$datas->jo}}</td> 
                         <td class="ukuran_font">{{$datas->periode}}</td> 
+                        <td class="ukuran_font">{{$datas->jenis_perawatan}}</td> 
                         <td class="ukuran_font">{{$datas->catatan}}</td> 
                     </tr>
                 @php $no ++; @endphp

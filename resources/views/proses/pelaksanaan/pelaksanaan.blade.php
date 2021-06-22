@@ -47,7 +47,16 @@
                 </div> 
             </div> 
             <div class="card-body pad"> 
-                <div id="accordion"> 
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
+                    </li> 
+                </ul>
+
+                <div id="accordion" class="mt-3"> 
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
@@ -183,18 +192,14 @@
                 </div>
                 <div class="table-responsive mt-3" id="tabel_pelaksanaan">
                     <table class="table w-auto table-bordered table-hover table-striped">
-                        <thead>
-                           
+                        <thead> 
                             <tr>
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">No</th>  
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;" >Kode Kartu</th>
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Tgl SKedul</th> 
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Tgl Pelaksanaan</th> 
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Komponen</th> 
-                                <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Kelompok</th> 
-                                <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Kelompok</th> 
-                                <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sistem</th> 
-                                <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Sistem</th>
+                              
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Pelaksana</th> 
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">JO</th>
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Periode</th> 
@@ -209,23 +214,13 @@
                             @foreach($pelaksanaan as $datas) 
                                 <tr>
                                     <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$no}}</td> 
-                                    
 
                                     <td class="ukuran_font accordion-toggle collapsed" id="accordion1" data-toggle="collapse" data-parent="#accordion1" href="#collapse{{$datas->id_pelaksanaan}}" width="250px;" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px; color: blue" > {{$datas->kode_pemeliharaan}} </td> 
 
                                     <td class="ukuran_font">{{$datas->tgl_skedul}}</td>
                                     <td class="ukuran_font">{{$datas->tgl_pelaksanaan}}</td>
 
-                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->komponen}}</td> 
-
-                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_pokok}}</td> 
-
-                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_sub_pokok}}</td>  
-
-                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_komponen_sistem}}</td> 
-
-                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_komponen_sub_sistem}}</td> 
-
+                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->komponen}}</td>  
                                     <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_pelaksana}}</td>  
 
                                     <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->jo}}</td> 
@@ -260,7 +255,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="ukuran_font">Uraian Pemeliharaan :</label>
-                                                        <p style="font-size: 10px;">   @php
+                                                        <p style="font-size: 14px;">   @php
                                                             echo $datas->uraian_pemeliharaan;
                                                         @endphp</p>
                                                     </div>
@@ -268,7 +263,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"> 
                                                         <label class="ukuran_font">Tindakan Pengamanan :</label>
-                                                        <p style="font-size: 10px;">   @php
+                                                        <p style="font-size: 14px;">   @php
                                                             echo $datas->tindakan_pengamanan;
                                                         @endphp</p>
                                                     </div>
@@ -276,7 +271,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"> 
                                                         <label class="ukuran_font">Prosedur :</label>
-                                                        <p style="font-size: 10px;">   @php
+                                                        <p style="font-size: 14px;">   @php
                                                            echo $datas->prosedur;
                                                         @endphp</p>
                                                     </div>
@@ -284,7 +279,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"> 
                                                         <label class="ukuran_font">Alat Kerja :</label>
-                                                        <p style="font-size: 10px;">   @php
+                                                        <p style="font-size: 14px;">   @php
                                                            echo $datas->alat_kerja;
                                                          @endphp</p>
                                                     </div>

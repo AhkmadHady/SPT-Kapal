@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Proses;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Master\JenisPerawatan;
 use Illuminate\Support\Facades\Input; 
 use Illuminate\Contracts\Auth\User;
 use App\Models\Master\KomponenLokasi;
@@ -67,8 +68,9 @@ class KartuPemeliharaanControllers extends Controller
         $pelaksana      = Pelaksana::OrderBy('id','desc')->get();
         $periode        = Periode::OrderBy('id','desc')->get();
         $lokasi         = KomponenLokasi::OrderBy('id','desc')->get();
+        $perawatan      = JenisPerawatan::OrderBy('id','desc')->get();
 
-        return view('proses.kartu_pemeliharaan.create_kartu_pemeliharaan',compact('kelompok','subkelompok','sistem','subsistem','lokasi','periode','pelaksana'));
+        return view('proses.kartu_pemeliharaan.create_kartu_pemeliharaan',compact('kelompok','subkelompok','sistem','subsistem','lokasi','periode','pelaksana','perawatan'));
     } 
 
     /*** Save Kartu Pemeliharaan ***/
@@ -88,7 +90,8 @@ class KartuPemeliharaanControllers extends Controller
             'prosedur'              => 'required',
             'id_periode'            => 'required',
             'tgl_mulai'             => 'required',
-            'alat_kerja'            => 'required'
+            'alat_kerja'            => 'required',
+            'id_jenis_perawatan'    => 'required'
         ]);
 
         if ($validasi->fails())
@@ -116,6 +119,7 @@ class KartuPemeliharaanControllers extends Controller
                 $input->tgl_mulai             = $request->tgl_mulai; 
                 $input->alat_kerja            = $request->alat_kerja; 
                 $input->jo                    = $request->jo; 
+                $input->id_jenis_perawatan    = $request->id_jenis_perawatan; 
                 $input->save();
 
                 /*** PROSES GENERATE SKEDUL ***/ 
@@ -303,8 +307,9 @@ class KartuPemeliharaanControllers extends Controller
                     ->leftjoin('komponen_sub_sistem as kss','kp.id_sub_sistem','=','kss.id')
                     ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                     ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id')
+                    ->leftjoin('jenis_perawatan as jp','kp.id_jenis_perawatan','=','jp.id') 
                     ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','kp.id_periode','per.periode','kp.tgl_mulai','kp.alat_kerja')
+                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','kp.id_periode','per.periode','kp.tgl_mulai','kp.alat_kerja','kp.id_jenis_perawatan','jp.jenis_perawatan')
                     ->where('kp.id','=',"{$id}")
                     ->OrderBy('kp.id','desc')->get()->first();
 
@@ -317,8 +322,9 @@ class KartuPemeliharaanControllers extends Controller
             $pelaksana      = Pelaksana::OrderBy('id','desc')->get();
             $periode        = Periode::OrderBy('id','desc')->get();
             $lokasi         = KomponenLokasi::OrderBy('id','desc')->get();
+            $perawatan      = JenisPerawatan::OrderBy('id','desc')->get();
 
-            return view('proses.kartu_pemeliharaan.edit_kartu_pemeliharaan',compact('kelompok','subkelompok','sistem','subsistem','lokasi','periode','pelaksana','pemeliharaan'));
+            return view('proses.kartu_pemeliharaan.edit_kartu_pemeliharaan',compact('kelompok','subkelompok','sistem','subsistem','lokasi','periode','pelaksana','pemeliharaan','perawatan'));
         
         }else{
 
@@ -343,7 +349,8 @@ class KartuPemeliharaanControllers extends Controller
             'prosedur'              => 'required',
             'id_periode'            => 'required',
             'tgl_mulai'             => 'required',
-            'alat_kerja'            => 'required'
+            'alat_kerja'            => 'required',
+            'id_jenis_perawatan'    => 'required'
         ]);
 
         if ($validasi->fails())
@@ -353,7 +360,6 @@ class KartuPemeliharaanControllers extends Controller
 
         }else{
                 $tahun_skedul = date('Y',strtotime($request->tgl_mulai));
-                
                 Pemeliharaan::where('id','=',"{$id}")
                             ->update([
                                         'id_komponen_pokok'     => $request->id_komponen_pokok,
@@ -369,6 +375,7 @@ class KartuPemeliharaanControllers extends Controller
                                         'id_periode'            => $request->id_periode,
                                         'tgl_mulai'             => $request->tgl_mulai,
                                         'alat_kerja'            => $request->alat_kerja,
+                                        'id_jenis_perawatan'    => $request->id_jenis_perawatan,
                                         'jo'                    => $request->jo
                                     ]);
 
