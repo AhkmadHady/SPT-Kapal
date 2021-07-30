@@ -132,12 +132,22 @@ class KartuPemeliharaanControllers extends Controller
                                         ->OrderBy('kp.id','desc')->get()->first();
 
                 if (isset($data_pemeliharaan)) {
-                    
+
+                    if ($data_pemeliharaan->rumus == 0) {
+
+                        $input                       = new Skedul();
+                        $input->kode_pemeliharaan    = $request->kode_pemeliharaan; 
+                        $input->tgl_skedul           = $data_pemeliharaan->tgl_mulai;
+                        $input->tahun                = $tahun_skedul; 
+                        $input->status               = 0; 
+                        $input->save(); 
+
+                        return redirect()->route('kartu_pemeliharaan')->with('info','Data kartu pemeliharaan berhasil disimpan');
+                         
+                    }
                     /*** Get Data Skedul ***/
                     $data_skedul = Skedul::where('kode_pemeliharaan','=',"{$request->kode_pemeliharaan}")->count();
-                  //  dd($data_skedul);
-
-                    if ($data_skedul > 0) {
+                    if ($data_skedul > 0) { 
 
                         return redirect()->back()->with('gagal','Skedul perencanaan pemeliharaan sudah ada dalam database dengan kode yang sama');  
 
@@ -150,8 +160,6 @@ class KartuPemeliharaanControllers extends Controller
                             if ($jml_hari > 365) {
 
                                     $cek_status = Skedul::where('status','=',0)->where('kode_pemeliharaan','=',"{$request->kode_pemeliharaan}")->get()->first();
-
-                                    
                                     
                                     if (isset($cek_status)) {
                                         return redirect()->back()->with('gagal','Skedul perencanaan pemeliharaan sudah ada dalam database');  exit();
@@ -169,8 +177,8 @@ class KartuPemeliharaanControllers extends Controller
                                     $input->tgl_skedul           = $tgl_service1;  
                                     $input->tahun                = $tahun_skedul; 
                                     $input->status               = 0; 
-                                    $input->save();
-                                
+                                    $input->save(); 
+
                             }else{
                                 
                                 if ($jml_hari > $jml_hari_setahun) {
@@ -203,9 +211,11 @@ class KartuPemeliharaanControllers extends Controller
                                 }
 
                             }
-                        return redirect()->route('kartu_pemeliharaan')->with('info','Data kartu pemeliharaan berhasil disimpan');
+                       
                         } 
                 }    
+
+            return redirect()->route('kartu_pemeliharaan')->with('info','Data kartu pemeliharaan berhasil disimpan');
         }
     }
 

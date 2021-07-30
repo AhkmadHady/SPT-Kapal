@@ -91,7 +91,7 @@
             <a href="{{route('home')}}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                    Dasborad 
+                    Dashboard
                 </p>
                 </a>
             </li>
@@ -154,10 +154,27 @@
                             <p>Jenis Perawatan</p>
                         </a>
                     </li> 
+                    <li class="nav-item">
+                        <a href="{{route('indeks_komponen')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Indeks Komponen</p>
+                        </a>
+                    </li> 
                     </ul>
                 </li>
             @endif 
-            <li class="nav-item has-treeview">
+
+            <li class="nav-item">
+                <a href="{{route('kartu_pemeliharaan')}}" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                        Kartu Pemeliharaan
+                    </p>
+                </a>
+            </li>
+
+
+            {{--<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
@@ -188,9 +205,9 @@
                         </a>
                     </li>
                 </ul>
-            </li> 
+            </li>--}}
 
-            <li class="nav-item has-treeview">
+            {{-- <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
@@ -214,6 +231,15 @@
                         </a>
                     </li> 
                 </ul>
+            </li> --}}
+
+            <li class="nav-item">
+                <a href="{{route('kalender_skedul')}}" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                        Jadwal Pemeliharaan
+                    </p>
+                </a>
             </li>
  
             <li class="nav-item has-treeview">
@@ -316,6 +342,10 @@
         }); 
 
         $('#tanggal').datetimepicker({
+            format: 'Y-MM-DD'
+        }); 
+
+        $('#tgl_jadwal_baru').datetimepicker({
             format: 'Y-MM-DD'
         }); 
     })

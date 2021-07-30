@@ -37,7 +37,19 @@
 @endif
 <div class="row"> 
     <div class="col-md-12 mt-4">
-        <div class="card card-outline card-info">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab"  href="{{route('skedul')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Jadwal Pemeliharaan</a>
+              </li> 
+            <li class="nav-item">
+              <a class="nav-link active" id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
+            </li> 
+        </ul>
+
+        <div class="card card-outline card-info mt-3">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
@@ -47,15 +59,7 @@
                 </div> 
             </div> 
             <div class="card-body pad"> 
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
-                    </li> 
-                </ul>
-
+              
                 <div id="accordion" class="mt-3"> 
                     <div class="card">
                         <div class="card-header" id="headingOne">
@@ -69,7 +73,7 @@
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body">
                                 <div class="row"> 
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="ukuran_font">Kelompok <span class="text-danger">*</span></label>
                                             <select class="form-control ukuran_font select2" name="id_komponen_pokok" id="id_komponen_pokok" style="width: 100%;">
@@ -106,9 +110,9 @@
                                             </select>
                                             <span class="text-danger">{{$errors->first('id_sistem')}}</span>
                                         </div>
-                                    </div>
+                                    </div> --}}
             
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="ukuran_font">Sub Sistem <span class="text-danger">*</span></label>
                                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_sub_sistem" id="id_sub_sistem">
@@ -145,7 +149,7 @@
                                             </select>
                                             <span class="text-danger">{{$errors->first('id_lokasi')}}</span>
                                         </div>
-                                    </div>
+                                    </div> --}}
             
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -681,3 +685,4 @@
     }); 
 </script>
 @endpush
+ 

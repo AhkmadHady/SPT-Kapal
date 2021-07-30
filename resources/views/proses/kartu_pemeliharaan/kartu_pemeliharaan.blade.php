@@ -96,7 +96,7 @@
                                         </div>
                                     </div>
             
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="ukuran_font">Sub Kelompok <span class="text-danger">*</span></label>
                                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_komponen_sub_pokok" id="id_komponen_sub_pokok">
@@ -107,9 +107,9 @@
                                             </select>
                                             <span class="text-danger">{{$errors->first('id_komponen_sub_pokok')}}</span>
                                         </div>
-                                    </div>
+                                    </div> --}}
             
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="ukuran_font">Sistem <span class="text-danger">*</span></label>
                                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_sistem" id="id_sistem">
@@ -121,8 +121,8 @@
                                             <span class="text-danger">{{$errors->first('id_sistem')}}</span>
                                         </div>
                                     </div>
-            
-                                    <div class="col-md-4">
+             --}}
+                                    {{-- <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="ukuran_font">Sub Sistem <span class="text-danger">*</span></label>
                                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_sub_sistem" id="id_sub_sistem">
@@ -133,9 +133,9 @@
                                             </select>
                                             <span class="text-danger">{{$errors->first('id_sub_sistem')}}</span>
                                         </div>
-                                    </div>
+                                    </div> --}}
             
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="ukuran_font">Pelaksana <span class="text-danger">*</span></label>
                                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_pelaksana" id="id_pelaksana">
@@ -147,8 +147,8 @@
                                             <span class="text-danger">{{$errors->first('id_pelaksana')}}</span>
                                         </div>
                                     </div>
-            
-                                    <div class="col-md-4">
+             --}}
+                                    {{-- <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="ukuran_font">Lokasi <span class="text-danger">*</span></label>
                                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_lokasi" id="id_lokasi">
@@ -159,7 +159,7 @@
                                             </select>
                                             <span class="text-danger">{{$errors->first('id_lokasi')}}</span>
                                         </div>
-                                    </div>
+                                    </div> --}}
             
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="col-md-8">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="ukuran_font">Komponen <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="komponen" name="komponen">

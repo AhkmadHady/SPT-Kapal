@@ -15,12 +15,31 @@
 @endif
 <div class="row"> 
     <div class="col-md-12 mt-4">
-        <div class="card card-outline card-info">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" id="profile-tab"  href="{{route('skedul')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Jadwal Pemeliharaan</a>
+              </li> 
+            <li class="nav-item">
+              <a class="nav-link " id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
+            </li> 
+        </ul>
+        <div class="card card-outline card-info mt-3">
             <div class="card-header">
-                <h5> Daftar Skedul Pemeliharaan </h5> 
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5> Daftar Jadwal Pemeliharaan </h5> 
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-info btn-sm float-right" style="width: 230px;" href="#" data-toggle="modal" data-target="#modal_tambah_jadwal"><i class="fa fa-plus"></i> Tambah Jadwal</a>
+                    </div>
+                </div>
             </div>  
             <div class="card-body pad">
-                <div id="accordion"> 
+               
+                <div id="accordion" class="mt-3"> 
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <div class="row">
@@ -28,17 +47,16 @@
                                     <h5 class="mb-0"> 
                                         Pencarian 
                                     </h5>
-                                </div>
-                                 
+                                </div> 
                             </div> 
                         </div>
                     
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label class="ukuran_font">Status Skedul <span class="text-danger">* </span></label>
+                                            <label class="ukuran_font">Status Jadwal <span class="text-danger">* </span></label>
                                             <select class="form-control ukuran_font select2" style="width: 100%;" name="status" id="status">
                                                 <option value="0">Aktif</option>
                                                 <option value="1">Tidak Aktif</option>
@@ -47,7 +65,7 @@
                                             <span class="text-primary" style="font-size: 12px;" id="error_status">Pencarian Komponen dan Lokasi Harus Berdasarkan Status</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="ukuran_font"> Komponen </label>
                                             <input type="text" class="form-control" id="komponen" name="komponen">
@@ -55,7 +73,7 @@
                                         </div>
                                     </div>
             
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="ukuran_font">Lokasi </label>
                                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_lokasi" id="id_lokasi">
@@ -67,11 +85,9 @@
                                             <span class="text-danger">{{$errors->first('id_lokasi')}}</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row"> 
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label class="ukuran_font"> Tanggal Skedul </label>
+                                            <label class="ukuran_font"> Tanggal Jadwal </label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                                 <input type="text" class="form-control datetimepicker-input ukuran_font" data-target="#reservationdate" id="tanggal1" name="tanggal1" datetimepicker="Y-m-d"/>
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
@@ -81,9 +97,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label class="ukuran_font"> s/d Tanggal Skedul </label>
+                                            <label class="ukuran_font"> s/d Tanggal Jadwal </label>
                                             <div class="input-group date" id="tanggal2" data-target-input="nearest">
                                                 <input type="text" class="form-control datetimepicker-input ukuran_font" data-target="#tanggal2" id="tgl2" name="tgl2" datetimepicker="Y-m-d"/>
                                                 <div class="input-group-append" data-target="#tanggal2" data-toggle="datetimepicker">
@@ -92,8 +108,8 @@
                                             </div> 
                                         </div>
                                     </div> 
-                                    <div class="col-md-4" style="margin-top: 34px">
-                                        <button type="button" style="width:150px" onclick="pencarianTanggalSkedul()" class="btn btn-block bg-gradient-primary btn-sm"><i class="fa fa-search"></i>  Cari </button>
+                                    <div class="col-md-2" style="margin-top: 34px">
+                                        <button type="button" style="width:100px" onclick="pencarianTanggalSkedul()" class="btn btn-block bg-gradient-primary btn-sm"><i class="fa fa-search"></i>  Cari </button> 
                                     </div> 
                                 </div> 
                             </div>
@@ -108,7 +124,7 @@
                         <thead>
                             <tr> 
                                 <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">No</th>  
-                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">Tanggal Skedul Pemeliharaan</th> 
+                                <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">Tanggal Jadwal Pemeliharaan</th> 
                                 <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px" >Kode Pemeliharaan</th> 
                                 <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">Komponen</th>  
                                 <th style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px">Lokasi</th>  
@@ -171,7 +187,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Edit Tanggal Skedul</h5>
+          <h5 class="modal-title">Edit Tanggal Jadwal</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -180,12 +196,12 @@
             @csrf
             <div class="modal-body">
                 <div class="form-group">
-                    <label class="ukuran_font" for="">Tangal Skedul</label>
+                    <label class="ukuran_font" for="">Tangal Jadwal Pemeliharaan</label>
                     <input type="text" class="form-control ukuran_font" id="tgl_skedul_lama" name="tgl_skedul_lama" disabled>
                     <input type="hidden" class="form-control ukuran_font" id="id_skedul" name="id_skedul">
                 </div>
                 <div class="form-group">
-                    <label class="ukuran_font"> Tanggal Skedul Baru</label>
+                    <label class="ukuran_font"> Tanggal Jadwal Pemeliharaan Baru</label>
                     <div class="input-group date" id="tgl_skedul" data-target-input="nearest">
                         <input type="text" class="form-control datetimepicker-input ukuran_font" data-target="#tgl_skedul" id="tgl_skedul_baru" name="tgl_skedul_baru" datetimepicker="Y-m-d"/>
                         
@@ -212,6 +228,55 @@
     </div> 
 </div>
 
+{{-- modal tambah jadwal --}}
+<div class="modal fade" id="modal_tambah_jadwal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Form Jadwal Pemeliharaan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{route('save_jadwal_pemeliharaan')}}" method="POST">
+            @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="ukuran_font" for="">Kode Pemeliharaan - Komponen</label>
+                        <select name="kode_pemeliharaan" id="kode_pemeliharaan" class="form-control select2">
+                            @foreach ($komponen as $item)
+                                <option value="{{$item->id}}">{{$item->kode_pemeliharaan}} - {{$item->komponen}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-grop" id="form_putaran" style="display:none">
+                        <label class="ukuran_font"> Jumlah Putaran </label>
+                        <input type="text" class="form-control" id="jam_putaran" name="jam_putaran" value="0">
+                    </div> 
+                    <div class="form-group">
+                        <label class="ukuran_font"> Tanggal Jadwal Pemeliharaan </label>
+                        <div class="input-group date" id="tgl_jadwal_baru" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input ukuran_font" data-target="#tgl_jadwal_baru" id="tgl_jadwal_baru_frm" name="tgl_jadwal_baru_frm" datetimepicker="Y-m-d" value="{{date('Y-m-d')}}"/>
+                            <div class="input-group-append" data-target="#tgl_jadwal_baru" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="modal-footer"> 
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-sm-block d-none"><i class="fa fa-times-circle"></i> Kembali</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary ml-1 btn-sm">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-sm-block d-none"><i class="fa fa-save"></i> Simpan</span>
+                    </button> 
+                </div>
+            </form>
+      </div> 
+    </div> 
+</div>
 
 <div class="modal fade text-left" id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel19" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm" role="document">
@@ -234,15 +299,13 @@
                     <label class="ukuran_font"> Tanggal Skedul Baru</label>
                     <div class="input-group date" id="tgl_skedul" data-target-input="nearest">
                         <input type="text" class="form-control datetimepicker-input ukuran_font" data-target="#tgl_skedul" id="tgl_skedul_baru" name="tgl_skedul_baru" datetimepicker="Y-m-d"/>
-                        
                         <div class="input-group-append" data-target="#tgl_skedul" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
                     </div> 
                 </div>
-             </div>
-            <div class="modal-footer">
-
+            </div>
+            <div class="modal-footer"> 
                 <button type="button" class="btn btn-light-secondary btn-sm" data-dismiss="modal">
                     <i class="bx bx-x d-block d-sm-none"></i>
                     <span class="d-sm-block d-none"><i class="bx bxs-x-circle"></i> Kembali</span>
@@ -251,12 +314,12 @@
                     <i class="bx bx-check d-block d-sm-none"></i>
                     <span class="d-sm-block d-none"><i class="bx bx-trash"></i> Hapus </span>
                 </button>
-
             </div>
             </form>
         </div>
     </div>
 </div>
+
 <!-- Modal Konfirmasi Hapus -->
 <div class="modal fade text-left" id="hapus_data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel19" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm" role="document">
@@ -317,6 +380,7 @@
        }
     });
 
+   
     /*** Pencarian Tanggal ***/
     function pencarianTanggalSkedul(){
         $.ajax({
@@ -413,6 +477,30 @@
                         $("#loading_header").css('display','none'); 
                         $('#tabel_kelompok').html(''); 
                         $('#tabel_kelompok').html(data);
+                    }
+                }
+        });
+    });  
+
+    $("#kode_pemeliharaan").change(function(){ 
+        $.ajax({
+            headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                
+            type     : "POST",
+            url      : "{{route('get_rumus_periode')}}",
+            cache    : false,
+            datetype : "JSON", 
+            data:{ 
+                    'id': $('#kode_pemeliharaan').val()
+                }, 
+                 
+                success: function(data){ 
+                    if (data.message > 0 ) {
+                        $("#form_putaran").css('display','none'); 
+                    }else{
+                        $("#form_putaran").css('display','block'); 
                     }
                 }
         });
