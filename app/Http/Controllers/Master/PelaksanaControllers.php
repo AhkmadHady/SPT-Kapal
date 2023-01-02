@@ -22,14 +22,14 @@ class PelaksanaControllers extends Controller
     /*** Index Pelaksana ***/
     public function index()
     {
-    	$pelaksana = Pelaksana::OrderBy('id','desc')->get();
+    	$pelaksana = Pelaksana::OrderBy('id','asc')->get();
     	return view('master.pelaksana.pelaksana',compact('pelaksana'));
     }
 
     /*** pencarian pelaksana ***/
     public function pencarianPelaksana(Request $request)
     {
-        $pelaksana = Pelaksana::where('nama_pelaksana','like',"%{$request->pencarian}%")->OrderBy('id','desc')->get();
+        $pelaksana = Pelaksana::where('nama_pelaksana','like',"%{$request->pencarian}%")->OrderBy('id','asc')->get();
     	return view('master.pelaksana.data_list_pelaksana',compact('pelaksana'));
     } 
 

@@ -20,9 +20,23 @@
 @endif
 <div class="row"> 
     <div class="col-md-12 mt-4">
-        <div class="card card-outline card-info">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link active" id="profile-tab"  href="{{route('jam_putar')}}" role="tab" aria-controls="jam_putar" aria-selected="false">Pemeliharaan Jam Putar</a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link " id="profile-tab"  href="{{route('skedul')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Jadwal Pemeliharaan</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link " id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
+            </li> 
+        </ul>
+        <div class="card card-outline card-info mt-3">
             <div class="card-header">
-                <h5> Pemeliharaan Tidak Terencana </h5> 
+                <h5> Pemeliharaan Jam Putar </h5> 
             </div> 
             <div class="card-body pad">
                

@@ -345,7 +345,7 @@ class PelaksanaanControllers extends Controller
                         ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','sk.id','kp.jo','per.periode','kp.tgl_mulai','sk.status','sk.tgl_skedul','pp.tgl_pelaksanaan','pp.catatan','pp.id as id_pelaksanaan','jp.jenis_perawatan')
                         ->where('pp.tgl_pelaksanaan','>=',"{$request->tanggal1}")
                         ->where('pp.tgl_pelaksanaan','<=',"{$request->tanggal2}")
-                        ->where('jp.kategori','<=',"{$request->kategori}")
+                        ->where('jp.kategori','=',"{$request->kategori}")
                         ->OrderBy('pp.id','desc')
                         ->get();
         }
