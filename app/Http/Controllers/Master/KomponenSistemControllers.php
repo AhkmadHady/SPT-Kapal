@@ -22,14 +22,14 @@ class KomponenSistemControllers extends Controller
     /*** Index ***/
     public function index()
     {
-    	 $sistem = KomponenSistem::OrderBy('id','asc')->get();
+    	 $sistem = KomponenSistem::OrderBy('id','desc')->get();
          return view('master.sistem.sistem',compact('sistem'));
     }
 
     /*** pencarian sistem ***/
     public function pencarianSistem(Request $request)
     {
-        $sistem = KomponenSistem::OrderBy('id','asc')->where('nama_komponen_sistem','like',"%{$request->pencarian}%")->get();
+        $sistem = KomponenSistem::OrderBy('id','desc')->where('nama_komponen_sistem','like',"%{$request->pencarian}%")->get();
         return view('master.sistem.data_list_sistem',compact('sistem'));
     } 
 
@@ -43,7 +43,7 @@ class KomponenSistemControllers extends Controller
     public function editSistem($id)
     {
     	  
-		$sistem = KomponenSistem::OrderBy('id','asc')->get()->first();
+		$sistem = KomponenSistem::OrderBy('id','desc')->get()->first();
 			 
         if (isset($sistem)){
 

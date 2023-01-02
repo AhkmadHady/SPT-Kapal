@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Proses;
 use App\Models\Proses\Skedul;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Master\JenisPerawatan;
 use Illuminate\Support\Facades\Input; 
 use Illuminate\Contracts\Auth\User;
 use App\Models\Master\KomponenLokasi;
@@ -16,8 +15,7 @@ use App\Models\Master\KomponenSubPokok;
 use App\Models\Master\KomponenSubSistem; 
 use App\Models\Master\Periode; 
 use App\Models\Proses\Pemeliharaan; 
-use App\Models\Proses\PelaksanaanPemeliharaan;
-use App\Models\Proses\PemeliharaanJamPutar;
+use App\Models\Proses\PelaksanaanPemeliharaan; 
 use Validator;
 use Response;
 use View;
@@ -39,17 +37,14 @@ class SkedulControllers extends Controller
         $paginate = 1;
         $dateNow  = date('Y-m-d');
         $lokasi   = KomponenLokasi::OrderBy('id','desc')->get();
-        $perawatan = JenisPerawatan::OrderBy('id','desc')->get();
         $skedul   = DB::table('kartu_pemeliharaan as kp')
                     ->leftjoin('skedul as sk','sk.kode_pemeliharaan','=','kp.kode_pemeliharaan')
                     ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                     ->select ('sk.tgl_skedul','kp.kode_pemeliharaan','kp.komponen','lok.nama_lokasi','sk.id','sk.status')
                     ->where('sk.tgl_skedul','=',"{$dateNow}")
                     ->paginate(50);
-        
-        $komponen = Pemeliharaan::groupBy('kode_pemeliharaan','komponen','id')->select('id','komponen','kode_pemeliharaan')->get();
 
-        return view('proses.skedul.skedule',compact('skedul','paginate','lokasi','komponen','perawatan'));
+        return view('proses.skedul.skedule',compact('skedul','paginate','lokasi'));
     }
  
     /*** Pencarian Skedul BY Tanggal ***/
@@ -307,7 +302,7 @@ class SkedulControllers extends Controller
                                         $cek_status = Skedul::where('status','=',0)->where('kode_pemeliharaan','=',"{$kode_pemeliharaan_}")->get()->first();
  
                                         if (isset($cek_status)) {
-                                            return redirect()->back()->with('info','Data pelaksanaan pemeliharaan berhasi disimpan');  exit();
+                                            return redirect()->back()->with('info','Data pelaksanaan pemeliharaan berhasi disimpan,skedul pemeliharaan komponen gagal di generate, data sudah tergenerate');  exit();
                                         }
 
                                         $jml_hari1         = $data_pemeliharaan->rumus ;
@@ -324,8 +319,6 @@ class SkedulControllers extends Controller
                                         $input->status               = 0; 
                                         $input->save();
                                     
-                                }elseif($jml_hari ==0){
-                                    return redirect()->back()->with('info','Data pelaksanaan pemeliharaan berhasi disimpan');  exit();
                                 }else{
                                     
                                     if ($jml_hari > $jml_hari_setahun) {
@@ -362,7 +355,7 @@ class SkedulControllers extends Controller
 
                     }else{
 
-                        return redirect()->back()->with('gagal','Data pelaksanaan pemeliharaan berhasil disimpan'); 
+                        return redirect()->back()->with('gagal','Data pelaksanaan pemeliharaan berhasi disimpan,skedul pemeliharaan komponen gagal di generate. '); 
                     }
 
                 }
@@ -370,43 +363,6 @@ class SkedulControllers extends Controller
             return redirect()->back()->with('info','Data pemeliharaan komponen berhasil disimpan'); 
         }
     } 
-
-    // save pemeliharaan 
-    public function saveJadwalPemeliharaan(Request $request)
-    {
-        $datapemeliharaan = Pemeliharaan::where('id','=',"{$request->kode_pemeliharaan}")->first();
-        $tahun = date('Y',strtotime($request->tgl_jadwal_baru_frm));
-        $input   = new Skedul();
-                $input->kode_pemeliharaan    = $datapemeliharaan->kode_pemeliharaan; 
-                $input->tgl_skedul           = $request->tgl_jadwal_baru_frm;  
-                $input->tahun                = $tahun; 
-                $input->status               = 0; 
-                $input->save();
-        
-        PemeliharaanJamPutar::create([
-                'tgl_pemeliharaan'       => $request->get('tgl_jadwal_baru_frm'),
-                'id_kartu_pemeliharaan'  => $request->get('kode_pemeliharaan'),
-                'jml_putaran'            => $request->get('jam_putaran'),
-        ]);
-
-        return redirect()->back()->with('info','Data pemeliharaan komponen berhasil disimpan');               
-    }
-
-    // cek rumus periode
-    public function getRumusPeriode(Request $request)
-    {
-        if ($request->id =='') {
-            return response()->json(['message' => '1']);
-        }else{
-            $komponen  =  DB::table('kartu_pemeliharaan as kp')
-                        ->leftjoin('periode as pr','kp.id_periode','=','pr.id')
-                        ->leftjoin('jenis_perawatan as jp','kp.id_jenis_perawatan','=','jp.id')
-                        ->where('kp.id','=',"{$request->id}")
-                        ->select('pr.rumus')->get()->first();
-            return response()->json(['message' => $komponen->rumus]);
-        }
-    }
-
 }
 
 

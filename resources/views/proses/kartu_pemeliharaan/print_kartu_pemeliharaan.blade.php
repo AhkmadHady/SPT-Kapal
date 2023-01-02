@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/gambar/logo_al.png')}}"> -->
-	<title>SPT KRI BAWAL-875</title>
+	<link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/gambar/logo_tni_al.ico')}}">
+	<title>SPT Kapal</title>
 
 <style type="text/css">
-     /* KARTU PEMELIHARAAN */
+    /* NOTA */
 html {margin: 0;padding: 0;}
 body {
   margin: 0.4cm;
@@ -111,22 +111,18 @@ table.iso { float:left;border:1px solid #555555; }
 table.iso td { padding:0 3px;font-size:10px; }
 
 .poContent { float:left;border:1px solid #555555; }
-.style1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-}
-.style2 {font-size: 12}
 </style>
 </head>
 <body>
 	<div class="container" style="margin-left: 10px">
-		<div class="header style2" id="header">		</div>
+		<div class="header" id="header">
+			
+		</div>
 		<div class="body" id="body">
 			<div class="header" align="center">
-				<h5 class="style1">KARTU PEMELIHARAAN</h5>
-				<h5 class="style1">{{ Auth::user()->kapal }}</h5>
+				<h5>KARTU PEMELIHARAAN</h5>
+				<h5>{{ Auth::user()->kapal }}</h5>
 			</div>
-			<div><br></br></div>
 			<div class="tabel">
 				<table class="po-list" border="1">
 				<tbody>
@@ -153,32 +149,32 @@ table.iso td { padding:0 3px;font-size:10px; }
 					<td>{{$pemeliharaan->jo}}</td>
 				</tr>
 				<tr>
-					<td colspan="4"><strong>URAIAN PEMELIHARAAN</strong></td>
+					<td colspan="4" style="background-color: #F9F6E4"><strong>URAIAN PEMELIHARAAN</strong></td>
 				</tr>
 				<tr>
-					<td colspan="4" height="45px"><?php echo $pemeliharaan->uraian_pemeliharaan; ?></td>
+					<td colspan="4" height="110px"><?php echo $pemeliharaan->uraian_pemeliharaan; ?></td>
 				</tr>
 				<tr>
-					<td colspan="4"><strong>TINDAKAN PENGAMANAN</strong></td>
+					<td colspan="4" style="background-color: #F9F6E4"><strong>TINDAKAN PENGAMANAN</strong></td>
 				</tr>
 				<tr>
-					<td colspan="4" height="25px"><?php echo $pemeliharaan->tindakan_pengamanan; ?></td>
+					<td colspan="4" height="45px"><?php echo $pemeliharaan->tindakan_pengamanan; ?></td>
 				</tr>
 				<tr>
-					<td colspan="4"><strong>ALAT ALAT KERJA, SUCAD,MAT,ALAT UKUR</strong></td>
+					<td colspan="4" style="background-color: #F9F6E4"><strong>ALAT ALAT KERJA, SUCAD,MAT,ALAT UKUR</strong></td>
 				</tr>
 				<tr >
-					<td colspan="4" height="35px"><?php echo $pemeliharaan->alat_kerja; ?></td>
+					<td colspan="4" height="45px"><?php echo $pemeliharaan->alat_kerja; ?></td>
 				</tr>
 				<tr>
-					<td colspan="4"><strong>PROSEDUR</strong></td>
+					<td colspan="4" style="background-color: #F9F6E4"><strong>PROSEDUR</strong></td>
 				</tr>
 				<tr>
-					<td colspan="4" height="285px"><?php echo $pemeliharaan->prosedur; ?></td>
+					<td colspan="4" height="235px"><?php echo $pemeliharaan->prosedur; ?></td>
 				</tr >
 				<tr class="bbottom">
-					<td colspan="3"><strong>LOKASI</strong></td>
-					<td class="bright"><strong>TANGGAL</strong></td>
+					<td style="background-color: #F9F6E4" colspan="3"><strong>LOKASI</strong></td>
+					<td style="background-color: #F9F6E4" class="bright"><strong>TANGGAL</strong></td>
 				</tr>
 				<tr>
 					<td colspan="3" class="bbottom bright">{{$pemeliharaan->nama_lokasi}}</td>
@@ -187,7 +183,7 @@ table.iso td { padding:0 3px;font-size:10px; }
 				</tbody>
 			</table>
 			</div> 
-	  </div>		
+		</div>		
 	</div>
 </body>
 </html>

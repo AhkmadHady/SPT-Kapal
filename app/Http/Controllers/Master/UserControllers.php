@@ -25,7 +25,7 @@ class UserControllers extends Controller
 	/*** Index Pengguna ***/
     public function index()
     {
-    	$pengguna = UsersModel::OrderBy('id','asc')->get();
+    	$pengguna = UsersModel::OrderBy('id','desc')->get();
     	return view('master.pengguna.pengguna',compact('pengguna'));
     }
 

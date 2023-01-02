@@ -18,7 +18,7 @@ class JenisPerawatanControllers extends Controller
     /*** Index jenis perawatan ***/ 
     public function index()
     {
-        $perawatan = JenisPerawatan::OrderBy('id','asc')->get();
+        $perawatan = JenisPerawatan::OrderBy('id','desc')->get();
         return view('master.jenis_perawatan.jenis_perawatan',compact('perawatan'));
     }
 

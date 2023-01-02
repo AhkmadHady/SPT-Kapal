@@ -5,6 +5,10 @@
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Cetak</th> 
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;" >Kode Kartu</th>
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Komponen</th> 
+            <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Kelompok</th> 
+            <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Kelompok</th> 
+            <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sistem</th> 
+            <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Sistem</th>
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Pelaksana</th>
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">JO</th>
             <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Periode</th> 
@@ -35,6 +39,14 @@
                     @endif 
                 </td> 
 
+                <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_pokok}}</td> 
+
+                <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_sub_pokok}}</td>  
+
+                <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_komponen_sistem}}</td> 
+
+                <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_komponen_sub_sistem}}</td> 
+
                 <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_pelaksana}}</td>  
 
                 <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->jo}}</td> 
@@ -57,11 +69,7 @@
                             <a class="dropdown-item ukuran_font" target="_blank" href="{{route('print_kartu_pemeliharaan',$datas->id)}}"><i class="fa fa-print mr-1"></i> Cetak</a>
  
                             @if ($count_data < 1)
-                                @if($datas->rumus > 0)
                                 <a class="dropdown-item ukuran_font generate_skedul" href="#" data-set="generate_skedul" data-kode="{{$datas->kode_pemeliharaan}}" data-tgl="{{$datas->tgl_mulai}}"><i class="fa fa-retweet mr-1"></i> Generate</a>
-                                @else
-
-                                @endif
                             @endif
                           </div>
                         </div>

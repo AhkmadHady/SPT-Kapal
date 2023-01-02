@@ -15,25 +15,20 @@
 @endif
 <div class="row"> 
     <div class="col-md-12 mt-4">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab"  href="{{route('jam_putar')}}" role="tab" aria-controls="profile" aria-selected="false">Pemeliharaan Jam Putar</a>
-            </li> 
-            <li class="nav-item">
-              <a class="nav-link" id="profile-tab"  href="{{route('skedul')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Jadwal Pemeliharaan</a>
-            </li> 
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
-              </li> 
-        </ul>
-        <div class="card card-outline card-info mt-3">
+        <div class="card card-outline card-info">
             <div class="card-header">
-                <h5> Kalender Pemeliharaan </h5> 
+                <h5> Kalender Skedul Pemeliharaan </h5> 
             </div> 
-            <div class="card-body pad">  
+            <div class="card-body pad"> 
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
+                    </li> 
+                </ul>
+
                 <div class="pencarian mt-3">
                     <form method="POST" action="{{route('get_jadwal_skedul')}}">
                         @csrf
@@ -85,7 +80,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="ukuran_font" for="username">Tahun</label>
-                                <input type="text" name="tahun" id="tahun" class="form-control ukuran_font" value="{{date('Y')}}">
+                                <input type="text" name="tahun" id="tahun" class="form-control ukuran_font">
                             </div>
                         </div>
                         <div class="col-md-4" style="margin-top: 32px;">
@@ -115,7 +110,7 @@
                         $dateNow = date('Y-m-d');
                     ?>
                     <table class="table nowrap table-bordered table-hover" >
-                    <tr bgcolor="#FFFF00">
+                        <tr>
                             <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px" colspan="4" align="center"> <strong>
                                 @if($bulan == "01")
                                     Januari

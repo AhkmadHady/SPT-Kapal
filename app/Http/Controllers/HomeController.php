@@ -35,27 +35,4 @@ class HomeController extends Controller
 
         return view('dashboard',compact('komponen','autstanding','skedul','pelaksanaan','skedul2','bulan_','tahun_'));
     } 
-
-    // get data periode skedul
-    public function jadwalSkedule(Request $request)
-    {
-        $tahun          = date('Y');
-        $tanggal        = date('Y-m-d');
-        $komponen       = Kerusakan::select('komponen')->count();
-
-        $autstanding    = Skedul::whereYear('tgl_skedul','=',"{$tahun}")->where('tgl_skedul','<',"{$tanggal}")->where('status','=',0)->count();
-
-        $skedul2        = Skedul::whereYear('tgl_skedul','=',"{$tahun}")->where('status','=',0)->count();
-        $pelaksanaan    = PelaksanaanPemeliharaan::whereYear('tgl_pelaksanaan','=',"{$tahun}")->count();
-
-        $bulan_ = $request->bulan;
-        $tahun_ = $request->tahun;
-  
-        $skedul = Skedul::whereYear('tgl_skedul','=',"{$tahun_}")
-                          ->whereMonth('tgl_skedul','=',"{$bulan_}")
-                          ->get();
-        
-                          return view('dashboard',compact('komponen','autstanding','skedul','pelaksanaan','skedul2','bulan_','tahun_'));
-        
-    }
 }

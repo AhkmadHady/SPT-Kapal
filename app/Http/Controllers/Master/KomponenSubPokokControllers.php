@@ -24,7 +24,7 @@ class KomponenSubPokokControllers extends Controller
     /*** Index ***/
     public function index()
     {
-    	 $data_subkelompok = KomponenSubPokok::OrderBy('id','asc')->get();
+    	 $data_subkelompok = KomponenSubPokok::OrderBy('id','desc')->get();
 
          return view('master.sub_kelompok.sub_kelompok',compact('data_subkelompok'));
     }
@@ -32,7 +32,7 @@ class KomponenSubPokokControllers extends Controller
     /*** pencarian subkelompok ***/ 
     public function pencarianSubkelompok(Request $request)
     {
-        $data_subkelompok = KomponenSubPokok::OrderBy('id','asc')->where('nama_sub_pokok','like',"%{$request->pencarian}%")->get(); 
+        $data_subkelompok = KomponenSubPokok::OrderBy('id','desc')->where('nama_sub_pokok','like',"%{$request->pencarian}%")->get(); 
         return view('master.sub_kelompok.data_list_sub_kelompok',compact('data_subkelompok'));
     }
 

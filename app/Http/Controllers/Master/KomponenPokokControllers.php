@@ -22,7 +22,7 @@ class KomponenPokokControllers extends Controller
     /*** Index Komponen Pokok ***/
     public function index()
     {
-        $kelompok = KomponenPokok::OrderBy('id','asc')->get();
+        $kelompok = KomponenPokok::OrderBy('id','desc')->get();
         return view('master.kelompok.kelompok',compact('kelompok'));
     }
 
@@ -61,7 +61,7 @@ class KomponenPokokControllers extends Controller
     /*** pencarian kelompok ***/
     public function pencarianKelompok(Request $request)
     {
-        $kelompok = KomponenPokok::OrderBy('id','asc')->where('nama_pokok','like',"%{$request->pencarian}%")->get();
+        $kelompok = KomponenPokok::OrderBy('id','desc')->where('nama_pokok','like',"%{$request->pencarian}%")->get();
         return view('master.kelompok.data_list_kelompok',compact('kelompok'));
     } 
 

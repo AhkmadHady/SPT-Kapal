@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h3> &nbsp; {{$autstanding}}</h3> 
-                    <p>&nbsp; Jadwal Pending</p>
+                    <p>&nbsp; Outstanding Skedul</p>
                 </div>
                 <div class="col-md-4">
                     <img src="{{asset('assets/gambar/plan.png')}}" width="100%"> 
@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h3> &nbsp; {{$skedul2}}</h3> 
-                    <p>&nbsp; Jadwal Perawatan</p>
+                    <p>&nbsp; Skedul</p>
                 </div>
                 <div class="col-md-4">
                     <img src="{{asset('assets/gambar/calendar.png')}}" width="100%"> 
@@ -68,71 +68,14 @@
         <div class="col-md-12 mt-4">
             <div class="card card-outline card-info">
                 <div class="card-header">
-                    <h5> Kalender Pemeliharaan </h5> 
+                    <h5> Kalender Skedul Pemeliharaan </h5> 
                 </div> 
                 <div class="card-body pad"> 
-                    <div class="pencarian">
-                        <form method="POST" action="{{route('get_home')}}">
-                            @csrf
-                        
-                        <div class="row">  
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="ukuran_font" for="username">Bulan</label>
-                                    <select class="form-control ukuran_font select2" name="bulan">
-                                        <option value="<?php echo date('m'); ?>">
-                                            <?php 
-                                                $bulan = date('m');
-                                                if ($bulan =='01') {
-                                                  echo "Januari";
-                                                }else if ($bulan =='02') {
-                                                  echo "Februari";
-                                                }else if ($bulan == '03') {
-                                                   echo "Maret";
-                                                }else if ($bulan == '04') {
-                                                    echo "April";
-                                                }else if ($bulan == '05') {
-                                                    echo "Mei";
-                                                }else if ($bulan == '06') {
-                                                   echo "Juni";
-                                                }else if ($bulan == '07') {
-                                                   echo "Juli";
-                                                }else if ($bulan == '08') {
-                                                   echo "Agustus";
-                                                }else if ($bulan == '09') {
-                                                  
-                                                }
-                                            ?>
-                                        </option>
-                                        <option value="01">Januari</option>
-                                        <option value="02">Februari</option>
-                                        <option value="03">Maret</option>
-                                        <option value="04">April</option>
-                                        <option value="05">Mei</option>
-                                        <option value="06">Juni</option>
-                                        <option value="07">Juli</option>
-                                        <option value="08">Agustus</option>
-                                        <option value="09">September</option>
-                                        <option value="10">Oktober</option>
-                                        <option value="11">November</option>
-                                        <option value="12">Desember</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="ukuran_font" for="username">Tahun</label>
-                                    <input type="text" name="tahun" id="tahun" class="form-control ukuran_font" value="{{date('Y')}}">
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="margin-top: 32px;">
-                                <button class="btn btn-block bg-gradient-info btn-sm" type="submit" style="width: 130px;"> <i class="fa fa-search"></i> Cari </button>
-                            </div>
-                        </div>
-                        </form>
-                    </div>
+                  
                     <div class="table-responsive" id="tabel_kelompok">
-                            <?php  
+                            <?php 
+    
+    
                             if($bulan_ =='' OR $tahun_ ==''){
                                 $hari   = date("d");
                                 $bulan  = date ("m");
@@ -150,32 +93,32 @@
                             $dateNow = date('Y-m-d');
                         ?>
                         <table class="table nowrap table-bordered table-hover" >
-                            <tr bgcolor="#FFFF00">
+                            <tr>
                                 <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px" colspan="4" align="center"> <strong>
                                     @if($bulan == "01")
-                                        JANUARI
+                                        Januari
                                     @elseif($bulan == "02")
-                                        FEBRUARI
+                                        Februari
                                     @elseif($bulan =="03")
-                                        MARET
+                                        Maret
                                     @elseif($bulan == "04")
-                                        APRIL
+                                        April
                                     @elseif($bulan == "05")
-                                        MEI
+                                        Mei
                                     @elseif($bulan == "06")
-                                        JUNI
+                                        Juni
                                     @elseif($bulan == "07")
-                                        JULI
+                                        Juli
                                     @elseif($bulan == "08")
-                                        AGUSTUS
+                                        Agustus
                                     @elseif($bulan == "09")
-                                        SEPTEMBER
+                                        September
                                     @elseif($bulan == "10")
-                                        OKTOBER
+                                        Oktober
                                     @elseif($bulan == "11")
-                                        NOVEMBER
+                                        November
                                     @elseif($bulan == "12")
-                                        DESEMBER
+                                        Desember
                                     @endif
                                 </strong>
                                 </td>
