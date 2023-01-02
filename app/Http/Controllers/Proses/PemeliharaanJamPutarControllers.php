@@ -77,7 +77,6 @@ class PemeliharaanJamPutarControllers extends Controller
         $komponen  =  DB::table('kartu_pemeliharaan as kp')
                         ->leftjoin('periode as pr','kp.id_periode','=','pr.id')
                         ->leftjoin('jenis_perawatan as jp','kp.id_jenis_perawatan','=','jp.id')
-                        ->where('jp.kategori','=',"TIDAK TERENCANA")
                         ->select('komponen','periode','kp.id')->get();
 
         $pelaksana = Pelaksana::all();

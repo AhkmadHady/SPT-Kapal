@@ -24,7 +24,7 @@ class KomponenSubSistemControllers extends Controller
     public function index()
     {
     	 
-    	 $subsistem = KomponenSubSistem::OrderBy('id','desc')->get();
+    	 $subsistem = KomponenSubSistem::OrderBy('id','asc')->get();
 
          return view('master.sub_sistem.sub_sistem',compact('subsistem'));
     }
@@ -32,7 +32,7 @@ class KomponenSubSistemControllers extends Controller
     /*** pencarian data sub sistem ***/
     public function pencarianSubSistem(Request $request)
     {
-        $subsistem = KomponenSubSistem::OrderBy('id','desc')->where('nama_komponen_sub_sistem','like',"%{$request->pencarian}%")->get();
+        $subsistem = KomponenSubSistem::OrderBy('id','asc')->where('nama_komponen_sub_sistem','like',"%{$request->pencarian}%")->get();
 
         return view('master.sub_sistem.data_list_sub_sistem',compact('subsistem'));
     } 

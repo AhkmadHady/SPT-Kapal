@@ -39,7 +39,7 @@
                 @csrf
             
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Kode Pemeliharaan <span class="text-danger">*</span></label>
                             <input type="text" name="kode_pemeliharaan" id="kode_pemeliharaan" class="form-control ukuran_font">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Kelompok <span class="text-danger">*</span></label>
                             <select class="form-control ukuran_font select2" name="id_komponen_pokok" id="id_komponen_pokok" style="width: 100%;">
@@ -60,7 +60,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Sub Kelompok <span class="text-danger">*</span></label>
                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_komponen_sub_pokok" id="id_komponen_sub_pokok">
@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Sistem <span class="text-danger">*</span></label>
                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_sistem" id="id_sistem">
@@ -86,7 +86,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Sub Sistem <span class="text-danger">*</span></label>
                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_sub_sistem" id="id_sub_sistem">
@@ -99,7 +99,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Pelaksana <span class="text-danger">*</span></label>
                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_pelaksana" id="id_pelaksana">
@@ -112,7 +112,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Lokasi <span class="text-danger">*</span></label>
                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_lokasi" id="id_lokasi">
@@ -125,7 +125,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Periode <span class="text-danger">*</span></label>
                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_periode" id="id_periode">
@@ -138,7 +138,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Tanggal Mulai Pemeliharanaan <span class="text-danger">*</span></label>
                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
@@ -151,7 +151,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Komponen <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="komponen" name="komponen">
@@ -159,7 +159,7 @@
 
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">Jenis Perawatan <span class="text-danger">*</span></label>
                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_jenis_perawatan" id="id_jenis_perawatan">
@@ -171,7 +171,7 @@
                             <span class="text-danger">{{$errors->first('id_jenis_perawatan')}}</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="ukuran_font">JO <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="jo" name="jo">

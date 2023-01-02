@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/get-home', 'HomeController@jadwalSkedule')->name('get_home');
 Route::group(['namespace' => 'Master'], function(){
 
     /*** Kelompok ***/
@@ -57,6 +58,15 @@ Route::group(['namespace' => 'Master'], function(){
 	Route::post('sub-sistem/delete-subsistem','KomponenSubSistemControllers@deleteSubSistem')->name('delete_subsistem');
 	Route::get('sub-sistem/{id}/edit-subsistem','KomponenSubSistemControllers@editSubSistem')->name('edit_subsistem');
 	Route::post('sub-sistem/{id}/update-subsistem','KomponenSubSistemControllers@updateSubSistem')->name('update_subsistem');
+
+		/*** Master Komponen ***/
+	Route::get('komponen','KomponenMasterControllers@index')->name('komponen');
+	Route::get('komponen/create-komponen','KomponenMasterControllers@createKomponen')->name('create_komponen');
+	Route::post('komponen/save-komponen','KomponenMasterControllers@saveKomponen')->name('save_komponen');
+	Route::post('komponen/pencarian-komponen','KomponenMasterControllers@pencarianKomponen')->name('pencarian_komponen_master');
+	Route::post('komponen/delete-komponen','KomponenMasterControllers@deleteKomponen')->name('delete_komponen');
+	Route::get('komponen/{id}/edit-komponen','KomponenMasterControllers@editKomponen')->name('edit_komponen');
+	Route::post('komponen/{id}/update-komponen','KomponenMasterControllers@updateKomponen')->name('update_komponen');
 
 	/*** Periode ***/
 	Route::get('periode','PeriodeControllers@index')->name('periode');
@@ -117,7 +127,9 @@ Route::group(['namespace' => 'Proses'], function(){
 	Route::post('kartu-pemeliharaan/pencarian-kartu-pemeliharaan-lokasi','KartuPemeliharaanControllers@pencarianLokasi')->name('pencarian_lokasi');
 	Route::post('kartu-pemeliharaan/pencarian-kartu-pemeliharaan-periode','KartuPemeliharaanControllers@pencarianPeriode')->name('pencarian_periode');
 	Route::post('kartu-pemeliharaan/pencarian-kartu-pemeliharaan-komponen','KartuPemeliharaanControllers@pencarianKomponen')->name('pencarian_komponen');
+	Route::post('kartu-pemeliharaan/pencarian-kartu-pemeliharaan-nama_kapal','KartuPemeliharaanControllers@pencarianNamakapal')->name('pencarian_nama_kapal');
 	Route::get('kartu-pemeliharaan/{id}/print-kartu-pemeliharaan','KartuPemeliharaanControllers@printKartuPemeliharaan')->name('print_kartu_pemeliharaan');
+	
 	Route::get('create-kartu-pemeliharaan','KartuPemeliharaanControllers@createKartuPemeliharaan')->name('create_kartu_pemeliharaan');
 	Route::get('create-kartu-pemeliharaan/{id}/edit-kartu-pemeliharaan','KartuPemeliharaanControllers@editKartuPemeliharaan')->name('edit_kartu_pemeliharaan');
 	Route::post('create-kartu-pemeliharaan/{id}/update-kartu-pemeliharaan','KartuPemeliharaanControllers@updateKartuPemeliharaan')->name('update_kartu_pemeliharaan'); 
@@ -133,10 +145,11 @@ Route::group(['namespace' => 'Proses'], function(){
 	 
 	Route::post('skedul/pencarian-komponen-skedul','SkedulControllers@pencarianKomponenSkedul')->name('pencarian_kom_skedul');
 	Route::post('skedul/pencarian-lokasi-skedul','SkedulControllers@pencarianLokasiSkedul')->name('pencarian_lok_skedul');
+	Route::post('skedul/get-data-rumus-periode','SkedulControllers@getRumusPeriode')->name('get_rumus_periode');
 	 
 	Route::post('skedul/delete-skedul','SkedulControllers@deleteSkedul')->name('delete_skedul');
-	Route::post('skedul/update-skedul','SkedulControllers@updatetanggalSkedul')->name('update_skedul');
-
+	Route::post('skedul/update-skedul','SkedulControllers@updatetanggalSkedul')->name('update_skedul'); 
+	Route::post('skedul/save-jadwal-pemeliharaan','SkedulControllers@saveJadwalPemeliharaan')->name('save_jadwal_pemeliharaan'); 
 	Route::get('kalender-pemeliharaan','SkedulControllers@jadwalSkedul')->name('kalender_skedul');
 	Route::post('kalender-pemeliharaan/get-jadwal-skedul','SkedulControllers@getJadwalSkedul')->name('get_jadwal_skedul');
 	Route::get('kalender-pemeliharaan/{tanggal}/get-komponen-skedul','SkedulControllers@getKomponenSkedulPemeliharaan')->name('get_komponen_skedul');

@@ -23,7 +23,7 @@ class PeriodeControllers extends Controller
     /*** Index ***/
     public function index()
     {
-    	$periode = Periode::OrderBy('id','desc')->get();
+    	$periode = Periode::OrderBy('id','asc')->get();
     	return view('master.periode.periode',compact('periode'));
 
     }
@@ -31,9 +31,15 @@ class PeriodeControllers extends Controller
     /*** pencarian periode ***/
     public function pencarianPeriode(Request $request)
     {
-        $periode = Periode::where('periode','like',"%{$request->pencarian}%")->get();
-    	return view('master.periode.data_list_periode',compact('periode'));
+        $periode = periode::OrderBy('id','asc')->where('keterangan','like',"%{$request->pencarian}%")->get();
+        return view('master.periode.data_list_periode',compact('periode'));
     } 
+
+    // public function pencarianPeriode(Request $request)
+    // {
+    //     $periode = Periode::where('periode','like',"%{$request->pencarian}%")->get();
+    //     return view('master.periode.data_list_periode',compact('periode'));
+    // } 
 
     /*** Create Periode ***/
     public function createPeriode()

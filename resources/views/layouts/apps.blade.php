@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>SPT - KAPAL</title>
+  <title>SPT KRI BAWAL-875</title>
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/gambar/logo_tni_al.ico')}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
@@ -91,7 +91,7 @@
             <a href="{{route('home')}}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                    Dasborad 
+                    Dashboard
                 </p>
                 </a>
             </li>
@@ -154,10 +154,33 @@
                             <p>Jenis Perawatan</p>
                         </a>
                     </li> 
+<!--                     <li class="nav-item">
+                        <a href="{{route('indeks_komponen')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Indeks Komponen</p>
+                        </a>
+                    </li>  -->
                     </ul>
                 </li>
             @endif 
-            <li class="nav-item has-treeview">
+         <li class="nav-item">
+                        <a href="{{route('indeks_komponen')}}" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>Indeks Komponen</p>
+                        </a>
+                    </li>
+
+            <li class="nav-item">
+                <a href="{{route('kartu_pemeliharaan')}}" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                        Kartu Pemeliharaan
+                    </p>
+                </a>
+            </li>
+
+
+            {{--<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
@@ -188,9 +211,9 @@
                         </a>
                     </li>
                 </ul>
-            </li> 
+            </li>--}}
 
-            <li class="nav-item has-treeview">
+            {{-- <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
@@ -214,6 +237,15 @@
                         </a>
                     </li> 
                 </ul>
+            </li> --}}
+
+            <li class="nav-item">
+                <a href="{{route('kalender_skedul')}}" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                        Jadwal Pemeliharaan
+                    </p>
+                </a>
             </li>
  
             <li class="nav-item has-treeview">
@@ -260,7 +292,7 @@
     </div> 
 
     <footer class="main-footer">
-        <strong>Copyright &copy; 2020 <a href="https://caputra.com/">PT. CAPUTRA MITRA SEJATI</a>.</strong>
+        <strong>Copyright &copy; 2022 <a href="https://www.tnial.mil.id/">TNI ANGKATAN LAUT</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 20.10
@@ -316,6 +348,10 @@
         }); 
 
         $('#tanggal').datetimepicker({
+            format: 'Y-MM-DD'
+        }); 
+
+        $('#tgl_jadwal_baru').datetimepicker({
             format: 'Y-MM-DD'
         }); 
     })

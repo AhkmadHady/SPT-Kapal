@@ -59,14 +59,6 @@
                         
                     </div>
                     <div class="col-md-7">  
-                        @php
-                            $id = Auth::user()->id;
-                            $level_user = gelLevel($id);
-                        @endphp
-                        @if ($level_user->level == "Admin" )
-                            <a class="btn btn-info btn-sm float-right" style="width: 230px;" href="{{route('create_kartu_pemeliharaan')}}"><i class="fa fa-plus"></i> Tambah Kartu Pemeliharaan</a>
-                        @endif
-                    </div>
                 </div> 
             </div> 
             <div class="card-body pad"> 
@@ -75,15 +67,17 @@
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <i class="fa fa-search"></i>
-                                Pencarian
+                                Pencarian 
                             </button>
                             </h5>
+
+                            <a class="btn btn-info btn-sm float-right" style="width: 230px;" href="{{route('create_kartu_pemeliharaan')}}"><i class="fa fa-plus"></i> Tambah Kartu Pemeliharaan</a>
                         </div>
-                    
+
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body">
                                 <div class="row"> 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="ukuran_font">Kelompok <span class="text-danger">*</span></label>
                                             <select class="form-control ukuran_font select2" name="id_komponen_pokok" id="id_komponen_pokok" style="width: 100%;">
@@ -95,87 +89,8 @@
                                             <span class="text-danger">{{$errors->first('id_komponen_pokok')}}</span>
                                         </div>
                                     </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Sub Kelompok <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_komponen_sub_pokok" id="id_komponen_sub_pokok">
-                                                <option value=""></option>
-                                                @foreach ($subkelompok as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_sub_pokok}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_komponen_sub_pokok')}}</span>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Sistem <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_sistem" id="id_sistem">
-                                                <option value=""></option>
-                                                @foreach ($sistem as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_komponen_sistem}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_sistem')}}</span>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Sub Sistem <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_sub_sistem" id="id_sub_sistem">
-                                                <option value=""></option>
-                                                @foreach ($subsistem as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_komponen_sub_sistem}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_sub_sistem')}}</span>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Pelaksana <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_pelaksana" id="id_pelaksana">
-                                                <option value=""></option>
-                                                @foreach ($pelaksana as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_pelaksana}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_pelaksana')}}</span>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Lokasi <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_lokasi" id="id_lokasi">
-                                                <option value=""></option>
-                                                @foreach ($lokasi as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_lokasi}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_lokasi')}}</span>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Periode <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control ukuran_font" id="id_periode" name="id_periode">
-                                            {{-- <select class="form-control ukuran_font select2" style="width: 100%;" name="id_periode" id="id_periode">
-                                                <option value=""></option>
-                                                @foreach ($periode as $datas)
-                                                    <option value="{{$datas->periode}}">{{$datas->periode}}</option>
-                                                @endforeach
-                                            </select> --}}
-                                            <span class="text-danger">{{$errors->first('id_periode')}}</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-8">
+                                              
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="ukuran_font">Komponen <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="komponen" name="komponen">
@@ -183,7 +98,23 @@
                 
                                         </div>
                                     </div>
-                                </div>      
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="ukuran_font">Periode <span class="text-danger">*</span></label>
+                                             <select class="form-control ukuran_font select2" style="width: 100%;" name="id_periode" id="id_periode">
+                                                <option value=""></option>
+                                                @foreach ($periode as $datas)
+                                                    <option value="{{$datas->keterangan}}">{{$datas->keterangan}}</option>
+                                                @endforeach
+                                            </select>
+                                            <!-- <input type="text" class="form-control ukuran_font" id="id_periode" name="id_periode"> -->
+                                            <span class="text-danger">{{$errors->first('id_periode')}}</span>
+                                        </div>
+                                    </div>
+
+                                   
+                                 </div>      
                             </div>
                         </div>
                     </div>
@@ -200,10 +131,10 @@
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Cetak</th> 
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;" >Kode Kartu</th>
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Komponen</th> 
-                                <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Kelompok</th> 
-                                <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Kelompok</th> 
+                                <!-- <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Kelompok</th> 
+                                <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Kelompok</th>  
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sistem</th> 
-                                <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Sistem</th>
+                                <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;"> Sub-Sistem</th>  -->
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Pelaksana</th> 
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">JO</th>
                                 <th class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">Periode</th> 
@@ -234,13 +165,13 @@
                                         @endif 
                                     </td> 
 
-                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_pokok}}</td> 
+                                    <!-- <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_pokok}}</td> 
 
-                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_sub_pokok}}</td>  
+                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_sub_pokok}}</td>   
 
-                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_komponen_sistem}}</td> 
+                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_komponen_sistem}}</td>  
 
-                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_komponen_sub_sistem}}</td> 
+                                    <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_komponen_sub_sistem}}</td>   -->
 
                                     <td class="ukuran_font" style="text-align: center;padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">{{$datas->nama_pelaksana}}</td>  
 
@@ -264,7 +195,11 @@
 
                                                 <a class="dropdown-item ukuran_font" target="_blank" href="{{route('print_kartu_pemeliharaan',$datas->id)}}"><i class="fa fa-print mr-1"></i> Cetak</a> 
                                                 @if ($count_data < 1)
+                                                    @if($datas->rumus > 0)
                                                     <a class="dropdown-item ukuran_font generate_skedul" href="#" data-set="generate_skedul" data-kode="{{$datas->kode_pemeliharaan}}" data-tgl="{{$datas->tgl_mulai}}"><i class="fa fa-retweet mr-1"></i> Generate</a>
+                                                    @else
+
+                                                    @endif
                                                 @endif
                                              
                                               </div>
@@ -624,7 +559,7 @@
         }); 
 
         /*** pencarian periode ***/ 
-        $("#id_periode").keyup(function(){ 
+        $("#id_periode").change(function(){ 
              $.ajax({
                  headers:{
                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
