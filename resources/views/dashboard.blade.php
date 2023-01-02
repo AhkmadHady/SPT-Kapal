@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h3> &nbsp; {{$autstanding}}</h3> 
-                    <p>&nbsp; Outstanding Skedul</p>
+                    <p>&nbsp; Jadwal Pending</p>
                 </div>
                 <div class="col-md-4">
                     <img src="{{asset('assets/gambar/plan.png')}}" width="100%"> 
@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h3> &nbsp; {{$skedul2}}</h3> 
-                    <p>&nbsp; Skedul</p>
+                    <p>&nbsp; Jadwal Perawatan</p>
                 </div>
                 <div class="col-md-4">
                     <img src="{{asset('assets/gambar/calendar.png')}}" width="100%"> 
@@ -150,32 +150,32 @@
                             $dateNow = date('Y-m-d');
                         ?>
                         <table class="table nowrap table-bordered table-hover" >
-                            <tr>
+                            <tr bgcolor="#FFFF00">
                                 <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px" colspan="4" align="center"> <strong>
                                     @if($bulan == "01")
-                                        Januari
+                                        JANUARI
                                     @elseif($bulan == "02")
-                                        Februari
+                                        FEBRUARI
                                     @elseif($bulan =="03")
-                                        Maret
+                                        MARET
                                     @elseif($bulan == "04")
-                                        April
+                                        APRIL
                                     @elseif($bulan == "05")
-                                        Mei
+                                        MEI
                                     @elseif($bulan == "06")
-                                        Juni
+                                        JUNI
                                     @elseif($bulan == "07")
-                                        Juli
+                                        JULI
                                     @elseif($bulan == "08")
-                                        Agustus
+                                        AGUSTUS
                                     @elseif($bulan == "09")
-                                        September
+                                        SEPTEMBER
                                     @elseif($bulan == "10")
-                                        Oktober
+                                        OKTOBER
                                     @elseif($bulan == "11")
-                                        November
+                                        NOVEMBER
                                     @elseif($bulan == "12")
-                                        Desember
+                                        DESEMBER
                                     @endif
                                 </strong>
                                 </td>

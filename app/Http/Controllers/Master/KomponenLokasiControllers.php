@@ -23,7 +23,7 @@ class KomponenLokasiControllers extends Controller
     /*** Index Komponen Lokasi ***/
     public function index()
     {
-        $lokasi = KomponenLokasi::OrderBy('id','desc')->get();
+        $lokasi = KomponenLokasi::OrderBy('id','asc')->get();
         return view('master.lokasi.lokasi',compact('lokasi'));
     }
 

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Login || SPT - KAPAL</title>
+  <title>Login || SPT KPC60</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/gambar/logo_tni_al.ico')}}">
   <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
@@ -16,9 +16,9 @@
 <body class="hold-transition login-page" style="font-family: Quicksand;">
 <div class="login-box">
   <div class="login-logo">
-    <img src="{{asset('assets/gambar/logo_tni_al.png')}}" alt="Logo TNI AL" style="width: 34%">
+    <img src="{{asset('assets/gambar/logo_tni_al.png')}}" alt="Logo TNI AL" style="width: 35%">
     <br>
-    <a href="#"> <strong>SPT - KAPAL</strong> </a>
+    <a href="#"> <strong>SPT KRI-BAWAL</strong> </a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

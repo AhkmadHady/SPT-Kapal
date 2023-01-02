@@ -20,6 +20,9 @@
               <a class="nav-link active" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="profile-tab"  href="{{route('jam_putar')}}" role="tab" aria-controls="profile" aria-selected="false">Pemeliharaan Jam Putar</a>
+            </li> 
+            <li class="nav-item">
               <a class="nav-link" id="profile-tab"  href="{{route('skedul')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Jadwal Pemeliharaan</a>
             </li> 
             <li class="nav-item">
@@ -112,7 +115,7 @@
                         $dateNow = date('Y-m-d');
                     ?>
                     <table class="table nowrap table-bordered table-hover" >
-                        <tr>
+                    <tr bgcolor="#FFFF00">
                             <td style="padding-top:5px; padding-left:5px; padding-right:5px; padding-bottom:5px; font-size: 14px" colspan="4" align="center"> <strong>
                                 @if($bulan == "01")
                                     Januari

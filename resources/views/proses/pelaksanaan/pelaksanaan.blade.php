@@ -42,8 +42,11 @@
               <a class="nav-link" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
             </li>
             <li class="nav-item">
+                    <a class="nav-link" id="profile-tab"  href="{{route('jam_putar')}}" role="tab" aria-controls="profile" aria-selected="false">Pemeliharaan Jam Putar</a>
+            </li> 
+            <li class="nav-item">
                 <a class="nav-link" id="profile-tab"  href="{{route('skedul')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Jadwal Pemeliharaan</a>
-              </li> 
+            </li> 
             <li class="nav-item">
               <a class="nav-link active" id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
             </li> 
@@ -73,94 +76,11 @@
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body">
                                 <div class="row"> 
-                                    {{-- <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Kelompok <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" name="id_komponen_pokok" id="id_komponen_pokok" style="width: 100%;">
-                                                <option value=""></option>
-                                                @foreach ($kelompok as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_pokok}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_komponen_pokok')}}</span>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Sub Kelompok <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_komponen_sub_pokok" id="id_komponen_sub_pokok">
-                                                <option value=""></option>
-                                                @foreach ($subkelompok as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_sub_pokok}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_komponen_sub_pokok')}}</span>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Sistem <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_sistem" id="id_sistem">
-                                                <option value=""></option>
-                                                @foreach ($sistem as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_komponen_sistem}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_sistem')}}</span>
-                                        </div>
-                                    </div> --}}
-            
-                                    {{-- <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Sub Sistem <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_sub_sistem" id="id_sub_sistem">
-                                                <option value=""></option>
-                                                @foreach ($subsistem as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_komponen_sub_sistem}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_sub_sistem')}}</span>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Pelaksana <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_pelaksana" id="id_pelaksana">
-                                                <option value=""></option>
-                                                @foreach ($pelaksana as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_pelaksana}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_pelaksana')}}</span>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="ukuran_font">Lokasi <span class="text-danger">*</span></label>
-                                            <select class="form-control ukuran_font select2" style="width: 100%;" name="id_lokasi" id="id_lokasi">
-                                                <option value=""></option>
-                                                @foreach ($lokasi as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->nama_lokasi}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">{{$errors->first('id_lokasi')}}</span>
-                                        </div>
-                                    </div> --}}
-            
+         
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="ukuran_font">Periode <span class="text-danger">*</span></label>
                                             <input type="text" name="id_periode" id="id_periode" class="form-control ukuran_font">
-                                            {{-- <select class="form-control ukuran_font select2" style="width: 100%;" name="id_periode" id="id_periode">
-                                                <option value=""></option>
-                                                @foreach ($periode as $datas)
-                                                    <option value="{{$datas->id}}">{{$datas->periode}}</option>
-                                                @endforeach
-                                            </select> --}}
                                             <span class="text-danger">{{$errors->first('id_periode')}}</span>
                                         </div>
                                     </div>

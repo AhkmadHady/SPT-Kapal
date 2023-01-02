@@ -168,6 +168,7 @@
                         </div>
                     </div>
 
+
                     <div class="col-md-12">
                         <label class="ukuran_font">Uraian Pemeliharaan <span class="text-danger">*</span></label>
                         <textarea class="textarea ukuran_font" name="uraian_pemeliharaan" id="uraian_pemeliharaan" placeholder="Place some text here" value="{{$pemeliharaan->uraian_pemeliharaan}}">{{$pemeliharaan->uraian_pemeliharaan}}</textarea>

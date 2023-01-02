@@ -20,8 +20,11 @@
               <a class="nav-link" id="home-tab"  href="{{route('kalender_skedul')}}" role="tab" aria-controls="home" aria-selected="true">Kalender Pemeliharaan</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="profile-tab"  href="{{route('jam_putar')}}" role="tab" aria-controls="profile" aria-selected="false">Pemeliharaan Jam Putar</a>
+            </li> 
+            <li class="nav-item">
                 <a class="nav-link active" id="profile-tab"  href="{{route('skedul')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Jadwal Pemeliharaan</a>
-              </li> 
+            </li> 
             <li class="nav-item">
               <a class="nav-link " id="profile-tab"  href="{{route('pelaksanaan')}}" role="tab" aria-controls="profile" aria-selected="false">Daftar Pelaksanaan Pemeliharaan</a>
             </li> 
@@ -85,6 +88,7 @@
                                             <span class="text-danger">{{$errors->first('id_lokasi')}}</span>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="ukuran_font"> Tanggal Jadwal </label>

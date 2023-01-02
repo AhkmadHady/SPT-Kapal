@@ -59,6 +59,15 @@ Route::group(['namespace' => 'Master'], function(){
 	Route::get('sub-sistem/{id}/edit-subsistem','KomponenSubSistemControllers@editSubSistem')->name('edit_subsistem');
 	Route::post('sub-sistem/{id}/update-subsistem','KomponenSubSistemControllers@updateSubSistem')->name('update_subsistem');
 
+		/*** Master Komponen ***/
+	Route::get('komponen','KomponenMasterControllers@index')->name('komponen');
+	Route::get('komponen/create-komponen','KomponenMasterControllers@createKomponen')->name('create_komponen');
+	Route::post('komponen/save-komponen','KomponenMasterControllers@saveKomponen')->name('save_komponen');
+	Route::post('komponen/pencarian-komponen','KomponenMasterControllers@pencarianKomponen')->name('pencarian_komponen_master');
+	Route::post('komponen/delete-komponen','KomponenMasterControllers@deleteKomponen')->name('delete_komponen');
+	Route::get('komponen/{id}/edit-komponen','KomponenMasterControllers@editKomponen')->name('edit_komponen');
+	Route::post('komponen/{id}/update-komponen','KomponenMasterControllers@updateKomponen')->name('update_komponen');
+
 	/*** Periode ***/
 	Route::get('periode','PeriodeControllers@index')->name('periode');
 	Route::get('periode/create-periode','PeriodeControllers@createPeriode')->name('create_periode');
@@ -118,6 +127,7 @@ Route::group(['namespace' => 'Proses'], function(){
 	Route::post('kartu-pemeliharaan/pencarian-kartu-pemeliharaan-lokasi','KartuPemeliharaanControllers@pencarianLokasi')->name('pencarian_lokasi');
 	Route::post('kartu-pemeliharaan/pencarian-kartu-pemeliharaan-periode','KartuPemeliharaanControllers@pencarianPeriode')->name('pencarian_periode');
 	Route::post('kartu-pemeliharaan/pencarian-kartu-pemeliharaan-komponen','KartuPemeliharaanControllers@pencarianKomponen')->name('pencarian_komponen');
+	Route::post('kartu-pemeliharaan/pencarian-kartu-pemeliharaan-nama_kapal','KartuPemeliharaanControllers@pencarianNamakapal')->name('pencarian_nama_kapal');
 	Route::get('kartu-pemeliharaan/{id}/print-kartu-pemeliharaan','KartuPemeliharaanControllers@printKartuPemeliharaan')->name('print_kartu_pemeliharaan');
 	
 	Route::get('create-kartu-pemeliharaan','KartuPemeliharaanControllers@createKartuPemeliharaan')->name('create_kartu_pemeliharaan');

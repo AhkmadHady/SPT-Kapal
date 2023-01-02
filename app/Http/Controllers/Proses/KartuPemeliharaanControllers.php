@@ -35,13 +35,13 @@ class KartuPemeliharaanControllers extends Controller
     /*** index kartu pemeliharaan ***/
     public function index()
     {
-        $kelompok       = KomponenPokok::OrderBy('id','desc')->get();
-        $subkelompok    = KomponenSubPokok::OrderBy('id','desc')->get();
-        $sistem         = KomponenSistem::OrderBy('id','desc')->get();
-        $subsistem      = KomponenSubSistem::OrderBy('id','desc')->get();
-        $pelaksana      = Pelaksana::OrderBy('id','desc')->get();
-        $periode        = Periode::OrderBy('id','desc')->get();
-        $lokasi         = KomponenLokasi::OrderBy('id','desc')->get();
+        $kelompok       = KomponenPokok::OrderBy('id','asc')->get();
+        $subkelompok    = KomponenSubPokok::OrderBy('id','asc')->get();
+        $sistem         = KomponenSistem::OrderBy('id','asc')->get();
+        $subsistem      = KomponenSubSistem::OrderBy('id','asc')->get();
+        $pelaksana      = Pelaksana::OrderBy('id','asc')->get();
+        $periode        = Periode::OrderBy('id','asc')->get();
+        $lokasi         = KomponenLokasi::OrderBy('id','asc')->get();
         $paginate       = 1;
 
         $pemeliharaan   = DB::table('kartu_pemeliharaan as kp')
@@ -52,7 +52,7 @@ class KartuPemeliharaanControllers extends Controller
                         ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                         ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                         ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                        ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai')
+                        ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','per.rumus')
                         ->OrderBy('kp.kode_pemeliharaan','asc')->paginate(25);
 
         return view('proses.kartu_pemeliharaan.kartu_pemeliharaan',compact('paginate','pemeliharaan','kelompok','subkelompok','sistem','subsistem','pelaksana','periode','lokasi'));
@@ -61,14 +61,14 @@ class KartuPemeliharaanControllers extends Controller
     /*** Create Kartu Pemeliharaan ***/
     public function createKartuPemeliharaan()
     {
-        $kelompok       = KomponenPokok::OrderBy('id','desc')->get();
-        $subkelompok    = KomponenSubPokok::OrderBy('id','desc')->get();
-        $sistem         = KomponenSistem::OrderBy('id','desc')->get();
-        $subsistem      = KomponenSubSistem::OrderBy('id','desc')->get();
-        $pelaksana      = Pelaksana::OrderBy('id','desc')->get();
-        $periode        = Periode::OrderBy('id','desc')->get();
-        $lokasi         = KomponenLokasi::OrderBy('id','desc')->get();
-        $perawatan      = JenisPerawatan::OrderBy('id','desc')->get();
+        $kelompok       = KomponenPokok::OrderBy('id','asc')->get();
+        $subkelompok    = KomponenSubPokok::OrderBy('id','asc')->get();
+        $sistem         = KomponenSistem::OrderBy('id','asc')->get();
+        $subsistem      = KomponenSubSistem::OrderBy('id','asc')->get();
+        $pelaksana      = Pelaksana::OrderBy('id','asc')->get();
+        $periode        = Periode::OrderBy('id','asc')->get();
+        $lokasi         = KomponenLokasi::OrderBy('id','asc')->get();
+        $perawatan      = JenisPerawatan::OrderBy('id','asc')->get();
 
         return view('proses.kartu_pemeliharaan.create_kartu_pemeliharaan',compact('kelompok','subkelompok','sistem','subsistem','lokasi','periode','pelaksana','perawatan'));
     } 
@@ -129,7 +129,7 @@ class KartuPemeliharaanControllers extends Controller
                                         ->leftjoin('periode as per','kp.id_periode','=','per.id') 
                                         ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','kp.komponen','kp.alat_kerja','kp.id','kp.jo','kp.id_periode','per.periode','kp.tgl_mulai','kp.alat_kerja','per.rumus')
                                         ->where('kp.kode_pemeliharaan','=',"{$request->kode_pemeliharaan}")
-                                        ->OrderBy('kp.id','desc')->get()->first();
+                                        ->OrderBy('kp.id','asc')->get()->first();
 
                 if (isset($data_pemeliharaan)) {
 
@@ -228,7 +228,7 @@ class KartuPemeliharaanControllers extends Controller
                                         ->leftjoin('periode as per','kp.id_periode','=','per.id') 
                                         ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','kp.komponen','kp.alat_kerja','kp.id','kp.jo','kp.id_periode','per.periode','kp.tgl_mulai','kp.alat_kerja','per.rumus')
                                         ->where('kp.kode_pemeliharaan','=',"{$request->kode_pemeliharaan}")
-                                        ->OrderBy('kp.id','desc')->get()->first();
+                                        ->OrderBy('kp.id','asc')->get()->first();
 
                 if (isset($data_pemeliharaan)) {
                     
@@ -321,18 +321,18 @@ class KartuPemeliharaanControllers extends Controller
                     ->leftjoin('periode as per','kp.id_periode','=','per.id') 
                     ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','kp.id_periode','per.periode','kp.tgl_mulai','kp.alat_kerja','kp.id_jenis_perawatan','jp.jenis_perawatan')
                     ->where('kp.id','=',"{$id}")
-                    ->OrderBy('kp.id','desc')->get()->first();
+                    ->OrderBy('kp.id','asc')->get()->first();
 
         if (isset($pemeliharaan)) {
 
-            $kelompok       = KomponenPokok::OrderBy('id','desc')->get();
-            $subkelompok    = KomponenSubPokok::OrderBy('id','desc')->get();
-            $sistem         = KomponenSistem::OrderBy('id','desc')->get();
-            $subsistem      = KomponenSubSistem::OrderBy('id','desc')->get();
-            $pelaksana      = Pelaksana::OrderBy('id','desc')->get();
-            $periode        = Periode::OrderBy('id','desc')->get();
-            $lokasi         = KomponenLokasi::OrderBy('id','desc')->get();
-            $perawatan      = JenisPerawatan::OrderBy('id','desc')->get();
+            $kelompok       = KomponenPokok::OrderBy('id','asc')->get();
+            $subkelompok    = KomponenSubPokok::OrderBy('id','asc')->get();
+            $sistem         = KomponenSistem::OrderBy('id','asc')->get();
+            $subsistem      = KomponenSubSistem::OrderBy('id','asc')->get();
+            $pelaksana      = Pelaksana::OrderBy('id','asc')->get();
+            $periode        = Periode::OrderBy('id','asc')->get();
+            $lokasi         = KomponenLokasi::OrderBy('id','asc')->get();
+            $perawatan      = JenisPerawatan::OrderBy('id','asc')->get();
 
             return view('proses.kartu_pemeliharaan.edit_kartu_pemeliharaan',compact('kelompok','subkelompok','sistem','subsistem','lokasi','periode','pelaksana','pemeliharaan','perawatan'));
         
@@ -406,7 +406,7 @@ class KartuPemeliharaanControllers extends Controller
                     ->leftjoin('periode as per','kp.id_periode','=','per.id') 
                     ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','kp.id_periode','per.periode','kp.tgl_mulai','kp.alat_kerja','per.keterangan as ket_periode')
                         ->where('kp.id','=',"{$id}")
-                        ->OrderBy('kp.id','desc')->get()->first();
+                        ->OrderBy('kp.id','asc')->get()->first();
         if (isset($pemeliharaan)) {
             $pdf = PDF::loadView('proses.kartu_pemeliharaan.print_kartu_pemeliharaan',compact('pemeliharaan'))->setPaper('a5', 'portrait')->setWarnings(false);
             return $pdf->stream('Kartu_Pemeliharaan.pdf');
@@ -449,7 +449,7 @@ class KartuPemeliharaanControllers extends Controller
                     ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                     ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                     ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai')
+                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','per.rumus')
                     ->where('kp.id_komponen_pokok','=',"{$request->id_komponen_pokok}")
                     ->OrderBy('kp.kode_pemeliharaan','asc')->get();
 
@@ -467,7 +467,7 @@ class KartuPemeliharaanControllers extends Controller
                     ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                     ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                     ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai')
+                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','per.rumus')
                     ->where('kp.id_komponen_sub_pokok','=',"{$request->id_komponen_sub_pokok}")
                     ->OrderBy('kp.kode_pemeliharaan','asc')->get();
 
@@ -485,7 +485,7 @@ class KartuPemeliharaanControllers extends Controller
                     ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                     ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                     ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai')
+                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','per.rumus')
                     ->where('kp.id_sistem','=',"{$request->id_sistem}")
                     ->OrderBy('kp.kode_pemeliharaan','asc')->get();
 
@@ -503,7 +503,7 @@ class KartuPemeliharaanControllers extends Controller
                     ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                     ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                     ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai')
+                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','per.rumus')
                     ->where('kp.id_sub_sistem','=',"{$request->id_sub_sistem}")
                     ->OrderBy('kp.kode_pemeliharaan','asc')->get();
 
@@ -521,7 +521,7 @@ class KartuPemeliharaanControllers extends Controller
                     ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                     ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                     ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai')
+                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','per.rumus')
                     ->where('kp.id_pelaksana','=',"{$request->id_pelaksana}")
                     ->OrderBy('kp.kode_pemeliharaan','asc')->get();
 
@@ -539,7 +539,7 @@ class KartuPemeliharaanControllers extends Controller
                      ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                      ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                      ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                     ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai')
+                     ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','per.rumus')
                      ->where('kp.id_lokasi','=',"{$request->id_lokasi}")
                      ->OrderBy('kp.kode_pemeliharaan','asc')->get();
  
@@ -557,8 +557,8 @@ class KartuPemeliharaanControllers extends Controller
                     ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                     ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                     ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','kp.id_periode')
-                    ->where('per.periode','like',"%{$request->id_periode}%")
+                    ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','kp.id_periode','per.rumus')
+                    ->where('per.keterangan','=',"{$request->id_periode}")
                     ->OrderBy('kp.kode_pemeliharaan','asc')->get();
 
        return view('proses.kartu_pemeliharaan.data_list_kartu_pemeliharaan',compact('pemeliharaan'));
@@ -576,7 +576,7 @@ class KartuPemeliharaanControllers extends Controller
                         ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                         ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                         ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                        ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai')
+                        ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','per.rumus')
                         ->OrderBy('kp.kode_pemeliharaan','asc')->paginate(25);
         }else{
  
@@ -588,7 +588,7 @@ class KartuPemeliharaanControllers extends Controller
                         ->leftjoin('pelaksana as pel','kp.id_pelaksana','=','pel.id')
                         ->leftjoin('lokasi as lok','kp.id_lokasi','=','lok.id') 
                         ->leftjoin('periode as per','kp.id_periode','=','per.id') 
-                        ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','kp.id_periode')
+                        ->select('kp.tanggal','kp.kode_pemeliharaan','kp.id_komponen_pokok','kp.id_komponen_sub_pokok','kp.id_sistem','kp.id_sub_sistem','kp.id_pelaksana','kp.id_lokasi','kp.uraian_pemeliharaan','kp.tindakan_pengamanan','kp.prosedur','komp.kode_pokok','komp.nama_pokok','ksp.kode_sub_pokok','ksp.nama_sub_pokok','ks.kode_komponen_sistem','ks.nama_komponen_sistem','kss.kode_komponen_sub_sistem','kss.nama_komponen_sub_sistem','pel.nama_pelaksana','lok.nama_lokasi','kp.komponen','kp.alat_kerja','kp.id','kp.jo','per.periode','kp.tgl_mulai','kp.id_periode','per.rumus')
                         ->where('kp.komponen','Like',"%{$request->komponen}%")->get();
         }
         
